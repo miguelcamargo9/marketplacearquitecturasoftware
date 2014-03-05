@@ -43,7 +43,6 @@
                <div class="container">
                     <h1>MarketPlace Turismo Ecologico</h1>
                     <p>Usted aqui podra encontrar ofertas, paquetes y servicios de diferentes proveedores para lograr unas vacaciones ecologicas unicas</p>
-
                </div>
           </div>
      </body>
