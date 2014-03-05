@@ -12,9 +12,11 @@ import java.io.PrintWriter;
 import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,6 +27,7 @@ public class loginServlet extends HttpServlet {
 
   Usuarios usuario;
   private boolean bandera;
+  private String error;
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,28 +43,22 @@ public class loginServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     try {
       if (bandera) {
-        /* TODO output your page here. You may use following sample code. */
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet loginServlet</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Hola " + usuario.getPrimerNombre() + "</h1>");
-        out.println("</body>");
-        out.println("</html>");
+        HttpSession session = request.getSession();
+        session.setAttribute("usuario", usuario.getPrimerNombre());
+        session.setMaxInactiveInterval(30 * 60);
+        Cookie usuarioLogeado = new Cookie("usuario", usuario.getPrimerNombre());
+        usuarioLogeado.setMaxAge(30 * 60);
+        response.addCookie(usuarioLogeado);
+        response.sendRedirect("menu.jsp");
       } else {
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet loginServlet</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Hola  ocurrio un error</h1>");
-        out.println("</body>");
-        out.println("</html>");
+        HttpSession session = request.getSession();
+        session.setAttribute("error", error);
+        session.setMaxInactiveInterval(30);
+        Cookie usuarioLogeado = new Cookie("error", error);
+        usuarioLogeado.setMaxAge(30);
+        response.addCookie(usuarioLogeado);
+        response.sendRedirect("error.jsp");
       }
-
     } finally {
       out.close();
     }
@@ -101,6 +98,9 @@ public class loginServlet extends HttpServlet {
     if (usuario != null && usuario.getContrasena().equals(passwordMd5)) {
       bandera = true;
     } else {
+      error += usuario == null ? "El usuario no existe <br>" : "";
+      error += nickname.equals("") ? "Por favor ingrese su nickname <br>" : "";
+      error += passwordMd5.equals("") ? "Por favor ingrese su contraseña <br>" : "";
       bandera = false;
     }
     processRequest(request, response);
