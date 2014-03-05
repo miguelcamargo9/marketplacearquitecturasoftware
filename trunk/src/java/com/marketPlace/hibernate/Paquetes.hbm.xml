@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-mar-2014 16:40:26 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.marketPlace.hibernate.Paquetes" table="paquetes" catalog="marketplace">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarios" class="com.marketPlace.hibernate.Usuarios" fetch="select">
+            <column name="idProveedor" not-null="true">
+                <comment>id proveedor</comment>
+            </column>
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="30" not-null="true">
+                <comment>descripcion del paquete</comment>
+            </column>
+        </property>
+        <property name="valor" type="double">
+            <column name="valor" precision="22" scale="0" not-null="true">
+                <comment>valor del paquete</comment>
+            </column>
+        </property>
+        <property name="estado" type="boolean">
+            <column name="estado" not-null="true">
+                <comment>estado del paquete</comment>
+            </column>
+        </property>
+        <set name="paquetesdeservicioses" table="paquetesdeservicios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPaquete" not-null="true">
+                    <comment>id Paquete</comment>
+                </column>
+            </key>
+            <one-to-many class="com.marketPlace.hibernate.Paquetesdeservicios" />
+        </set>
+        <set name="ofertases" table="ofertas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPaquete" not-null="true">
+                    <comment>id del paquete</comment>
+                </column>
+            </key>
+            <one-to-many class="com.marketPlace.hibernate.Ofertas" />
+        </set>
+        <set name="transaccioneses" table="transacciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPaquete">
+                    <comment>id del paquete</comment>
+                </column>
+            </key>
+            <one-to-many class="com.marketPlace.hibernate.Transacciones" />
+        </set>
+    </class>
+</hibernate-mapping>

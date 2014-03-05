@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="marketplace"/>
+  <table-filter match-name="transacciones"/>
+  <table-filter match-name="usuarios"/>
+  <table-filter match-name="permisos"/>
+  <table-filter match-name="menus"/>
+  <table-filter match-name="archivos"/>
+  <table-filter match-name="preguntas"/>
+  <table-filter match-name="paquetes"/>
+  <table-filter match-name="ofertas"/>
+  <table-filter match-name="perfiles"/>
+  <table-filter match-name="paquetesdeservicios"/>
+  <table-filter match-name="categorias"/>
+  <table-filter match-name="archivosadjuntos"/>
+  <table-filter match-name="servicios"/>
+  <table-filter match-name="adjuntos"/>
+</hibernate-reverse-engineering>
