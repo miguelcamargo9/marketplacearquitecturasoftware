@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-mar-2014 16:40:26 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.marketPlace.hibernate.Paquetesdeservicios" table="paquetesdeservicios" catalog="marketplace">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paquetes" class="com.marketPlace.hibernate.Paquetes" fetch="select">
+            <column name="idPaquete" not-null="true">
+                <comment>id Paquete</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="servicios" class="com.marketPlace.hibernate.Servicios" fetch="select">
+            <column name="idServicio" not-null="true">
+                <comment>id de los servicios</comment>
+            </column>
+        </many-to-one>
+        <property name="estado" type="boolean">
+            <column name="estado" not-null="true">
+                <comment>estado del paquete de servicios</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

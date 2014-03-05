@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-mar-2014 16:40:26 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.marketPlace.hibernate.Transacciones" table="transacciones" catalog="marketplace">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paquetes" class="com.marketPlace.hibernate.Paquetes" fetch="select">
+            <column name="idPaquete">
+                <comment>id del paquete</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="usuarios" class="com.marketPlace.hibernate.Usuarios" fetch="select">
+            <column name="idUsuario" not-null="true">
+                <comment>id del usuario</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="ofertas" class="com.marketPlace.hibernate.Ofertas" fetch="select">
+            <column name="idOferta">
+                <comment>id de la oferta</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="servicios" class="com.marketPlace.hibernate.Servicios" fetch="select">
+            <column name="idServicio">
+                <comment>id del servicio</comment>
+            </column>
+        </many-to-one>
+        <property name="fechaTransaccion" type="date">
+            <column name="fechaTransaccion" length="10" not-null="true">
+                <comment>fecha de la transaccion</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

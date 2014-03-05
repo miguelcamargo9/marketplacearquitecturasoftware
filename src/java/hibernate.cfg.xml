@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/marketplace?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">marketplaceuser</property>
-    <property name="hibernate.connection.password">marketplaceuser</property>
-  </session-factory>
+     <session-factory>
+          <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+          <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+          <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/marketplace?zeroDateTimeBehavior=convertToNull</property>
+          <property name="hibernate.connection.username">marketplaceuser</property>
+          <property name="hibernate.connection.password">marketplaceuser</property>
+          <property name="hibernate.show_sql">true</property>
+          <property name="hibernate.current_session_context_class">thread</property>
+          <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+          <mapping resource="com/marketPlace/hibernate/Archivosadjuntos.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Ofertas.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Paquetesdeservicios.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Categorias.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Servicios.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Paquetes.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Usuarios.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Preguntas.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Adjuntos.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Menus.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Archivos.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Perfiles.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Permisos.hbm.xml"/>
+          <mapping resource="com/marketPlace/hibernate/Transacciones.hbm.xml"/>
+     </session-factory>
 </hibernate-configuration>
