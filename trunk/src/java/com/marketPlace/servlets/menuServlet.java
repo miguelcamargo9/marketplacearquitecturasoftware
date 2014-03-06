@@ -88,7 +88,7 @@ public class menuServlet extends HttpServlet {
       String padre = opcion.getIdPadre() == null ? "#" : "" + opcion.getIdPadre();
       objetoOpcionMenu.setId("" + opcion.getId());
       objetoOpcionMenu.setParent("" + padre);
-      objetoOpcionMenu.setText(opcion.getDescripcion());
+      objetoOpcionMenu.setText("<a onclick=\"javascript:f_link('" + opcion.getEnlace() + "')\"> " + opcion.getDescripcion() + "</a>");
       opcionesMenu.add(objetoOpcionMenu);
       objetoOpcionMenu = new opciondeMenu();
     }

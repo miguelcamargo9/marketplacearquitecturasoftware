@@ -48,6 +48,10 @@
           }
         });
       }
+
+      function f_link(enlace) {
+        alert(enlace);
+      }
     </script>
     <title>Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </title>
   </head>
