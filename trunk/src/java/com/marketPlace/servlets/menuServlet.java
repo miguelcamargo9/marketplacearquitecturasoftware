@@ -5,29 +5,28 @@
  */
 package com.marketPlace.servlets;
 
-import com.marketPlace.Dao.usuariosDAO;
-import com.marketPlace.hibernate.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import com.google.gson.Gson;
+import com.marketPlace.Dao.menusDAO;
+import com.marketPlace.Vo.opciondeMenu;
+import com.marketPlace.hibernate.Menus;
+import java.util.ArrayList;
 
 /**
  *
  * @author open12
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "menuServlet", urlPatterns = {"/menuServlet"})
+public class menuServlet extends HttpServlet {
 
-  Usuarios usuario;
-  private boolean bandera;
-  private String error = "";
+  private ArrayList<Menus> menuEncontrado = new ArrayList<Menus>();
+  private ArrayList<opciondeMenu> opcionesMenu = new ArrayList<opciondeMenu>();
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,22 +41,11 @@ public class loginServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      if (bandera) {
-        HttpSession session = request.getSession();
-        session.setAttribute("usuario", usuario.getPrimerNombre());
-        session.setAttribute("apellido", usuario.getPrimerApellido());
-        session.setAttribute("perfil", "" + usuario.getPerfiles().getId());
-        session.setMaxInactiveInterval(30 * 60);
-        response.sendRedirect("menu.jsp");
-      } else {
-        HttpSession session = request.getSession();
-        session.setAttribute("error", error);
-        session.setMaxInactiveInterval(1);
-        Cookie usuarioLogeado = new Cookie("error", error);
-        usuarioLogeado.setMaxAge(30);
-        response.addCookie(usuarioLogeado);
-        response.sendRedirect("error.jsp");
-      }
+      String json;
+      json = new Gson().toJson(opcionesMenu);
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      response.getWriter().write(json);
     } finally {
       out.close();
     }
@@ -89,18 +77,20 @@ public class loginServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String nickname = request.getParameter("nickname");
-    String passwordMd5 = request.getParameter("password");
-    usuariosDAO usuariodao = new usuariosDAO();
-    usuariodao.getBuscarInfoUser(nickname);
-    usuario = usuariodao.getUsuario();
-    if (usuario != null && usuario.getContrasena().equals(passwordMd5)) {
-      bandera = true;
-    } else {
-      error += usuario == null ? "El usuario no existe <br>" : "";
-      error += nickname.equals("") ? "Por favor ingrese su nickname <br>" : "";
-      error += passwordMd5.equals("") ? "Por favor ingrese su contraseña <br>" : "";
-      bandera = false;
+    Integer perfil;
+    perfil = Integer.parseInt(request.getParameter("perfil"));
+    menusDAO menudao = new menusDAO();
+    menudao.getInfoPerfil(perfil);
+    menudao.getMenuPerfil();
+    menuEncontrado = menudao.getMenuUsuario();
+    opciondeMenu objetoOpcionMenu = new opciondeMenu();
+    for (Menus opcion : menuEncontrado) {
+      String padre = opcion.getIdPadre() == null ? "#" : "" + opcion.getIdPadre();
+      objetoOpcionMenu.setId("" + opcion.getId());
+      objetoOpcionMenu.setParent("" + padre);
+      objetoOpcionMenu.setText(opcion.getDescripcion());
+      opcionesMenu.add(objetoOpcionMenu);
+      objetoOpcionMenu = new opciondeMenu();
     }
     processRequest(request, response);
   }
@@ -114,24 +104,5 @@ public class loginServlet extends HttpServlet {
   public String getServletInfo() {
     return "Short description";
   }// </editor-fold>
-
-  public String getMD5(String cadena) throws Exception {
-    MessageDigest md = MessageDigest.getInstance("MD5");
-    byte[] b = md.digest(cadena.getBytes());
-
-    int size = b.length;
-    StringBuilder h = new StringBuilder(size);
-    for (int i = 0; i < size; i++) {
-
-      int u = b[i] & 255;
-
-      if (u < 16) {
-        h.append("0").append(Integer.toHexString(u));
-      } else {
-        h.append(Integer.toHexString(u));
-      }
-    }
-    return h.toString();
-  }
 
 }
