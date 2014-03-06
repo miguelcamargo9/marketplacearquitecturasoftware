@@ -50,7 +50,13 @@
       }
 
       function f_link(enlace) {
-        alert(enlace);
+        var frame = $("#contenido");
+        frame.attr("src", enlace);
+      }
+    </script>
+    <script type="text/css">
+      html, body {
+        height:100%;
       }
     </script>
     <title>Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </title>
@@ -86,13 +92,14 @@
     </div>
     <div class="jumbotron">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div id="jstree">
 
           </div>
         </div>
-        <div class="col-md-10">
-
+        <div class="col-md-9">
+          <iframe id="contenido" width="100%" height="100%">
+          </iframe>
         </div>
       </div>
     </div>
