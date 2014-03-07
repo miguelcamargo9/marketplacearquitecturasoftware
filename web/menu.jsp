@@ -124,8 +124,8 @@
       </div>
       <div class="footer">
         desarrollado por:
-        sebastian rojas
-        miguel camargo
+        Sebastian Rojas
+        Miguel Camargo
       </div>
     </div>
   </body>
