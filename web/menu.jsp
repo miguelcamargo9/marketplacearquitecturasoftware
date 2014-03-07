@@ -78,6 +78,58 @@
         width:100%;
         height: 20px;
       }
+
+      .about {
+        margin: 70px auto 40px;
+        padding: 8px;
+        width: 260px;
+        font: 10px/18px 'Lucida Grande', Arial, sans-serif;
+        color: #666;
+        text-align: center;
+        text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+        background: #eee;
+        background: rgba(250, 250, 250, 0.8);
+        border-radius: 4px;
+        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 6px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 6px rgba(0, 0, 0, 0.2);
+      }
+      .about a {
+        color: #333;
+        text-decoration: none;
+        border-radius: 2px;
+        -webkit-transition: background 0.1s;
+        -moz-transition: background 0.1s;
+        -o-transition: background 0.1s;
+        transition: background 0.1s;
+      }
+      .about a:hover {
+        text-decoration: none;
+        background: #fafafa;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .about-links {
+        height: 30px;
+      }
+      .about-links > a {
+        float: left;
+        width: 50%;
+        line-height: 30px;
+        font-size: 12px;
+      }
+
+      .about-author {
+        margin-top: 5px;
+      }
+      .about-author > a {
+        padding: 1px 3px;
+        margin: 0 -1px;
+      }
+
     </style>
     <title>Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </title>
   </head>
@@ -123,9 +175,11 @@
         </iframe>
       </div>
       <div class="footer">
-        desarrollado por:
-        Sebastian Rojas
-        Miguel Camargo
+        <section class = "about">
+          <p class = "about-author" >
+            &copy;2013&ndash;2014 <a href = "mailto:azulsebas123@gmail.com"> Sebastian Rojas </a> <br>
+            &copy;2013&ndash;2014 <a href = "mailto:miguelcamargo9@gmail.com"> Miguel Camargo </a> 
+        </section>
       </div>
     </div>
   </body>
