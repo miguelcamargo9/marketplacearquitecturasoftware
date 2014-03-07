@@ -41,7 +41,7 @@ public class menuServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      String json;
+      String json = "";
       json = new Gson().toJson(opcionesMenu);
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
