@@ -47,6 +47,7 @@ public class loginServlet extends HttpServlet {
         session.setAttribute("usuario", usuario.getPrimerNombre());
         session.setAttribute("apellido", usuario.getPrimerApellido());
         session.setAttribute("perfil", "" + usuario.getPerfiles().getId());
+        session.setAttribute("accion", "cargardatos");
         session.setMaxInactiveInterval(30 * 60);
         response.sendRedirect("menu.jsp");
       } else {

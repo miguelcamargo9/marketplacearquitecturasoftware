@@ -7,6 +7,7 @@ package com.marketPlace.Dao;
 
 import com.marketPlace.hibernate.HibernateUtil;
 import com.marketPlace.hibernate.Usuarios;
+import java.util.ArrayList;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -18,6 +19,7 @@ public class usuariosDAO {
 
   Session session = null;
   private Usuarios usuario;
+  private ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
 
   public usuariosDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -33,8 +35,21 @@ public class usuariosDAO {
     }
   }
 
+  public void getListarUsuarios() {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("from Usuarios");
+      listaUsuarios = (ArrayList<Usuarios>) q.list();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public ArrayList<Usuarios> getListaUsuarios() {
+    return listaUsuarios;
+  }
+
   public Usuarios getUsuario() {
     return usuario;
   }
-
 }
