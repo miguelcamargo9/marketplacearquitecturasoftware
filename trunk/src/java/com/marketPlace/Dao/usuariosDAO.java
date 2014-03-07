@@ -34,6 +34,15 @@ public class usuariosDAO {
       e.printStackTrace();
     }
   }
+  
+  public void setInfoUser(Usuarios usuario) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      session.save(usuario);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
   public void getListarUsuarios() {
     try {
