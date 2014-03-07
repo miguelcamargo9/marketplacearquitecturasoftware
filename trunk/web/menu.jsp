@@ -63,7 +63,7 @@
       }
 
       .article-tree {
-        height:100%;
+        height:70%;
         width: 25%;
         float:left;
         border-right: 2px solid #ccc; 
@@ -71,7 +71,7 @@
 
       .content-area {
         overflow: auto;
-        height: 100%;
+        height: 70%;
       }
 
       .footer {
@@ -82,7 +82,7 @@
       .about {
         margin: 70px auto 40px;
         padding: 8px;
-        width: 260px;
+        width: 30%;
         font: 10px/18px 'Lucida Grande', Arial, sans-serif;
         color: #666;
         text-align: center;
@@ -177,7 +177,7 @@
       <div class="footer">
         <section class = "about">
           <p class = "about-author" >
-            &copy;2013&ndash;2014 <a href = "mailto:azulsebas123@gmail.com"> Sebastian Rojas </a> <br>
+            &copy;2013&ndash;2014 <a href = "mailto:azulsebas123@gmail.com"> Sebastian Rojas </a> 
             &copy;2013&ndash;2014 <a href = "mailto:miguelcamargo9@gmail.com"> Miguel Camargo </a> 
         </section>
       </div>
