@@ -54,53 +54,79 @@
         frame.attr("src", enlace);
       }
     </script>
-    <script type="text/css">
-      html, body {
-        height:100%;
+    <style>
+      body, html, .container-fluid {
+        height: 100%;
       }
-    </script>
+
+      .navbar {
+        width:100%;
+      }
+
+      .article-tree {
+        height:100%;
+        width: 25%;
+        float:left;
+        border-right: 2px solid #ccc; 
+      }
+
+      .content-area {
+        overflow: auto;
+        height: 100%;
+      }
+
+      .footer {
+        width:100%;
+        height: 20px;
+      }
+    </style>
     <title>Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </title>
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">MarketPlace</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </a></li>
-            <li>
-            <li>
-              <form class="navbar-form navbar-right" action="salirServlet" method="post">
-                <input type="submit" class="btn btn-sm btn-link" name="salir" value="salir">
+    <div class="container-fluid">   
+      <div class="navbar">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">MarketPlace</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Bienvenido <%=nombreUsuario + " " + apellidoUsuario%> </a></li>
+                <li>
+                <li>
+                  <form class="navbar-form navbar-right" action="salirServlet" method="post">
+                    <input type="submit" class="btn btn-sm btn-link" name="salir" value="salir">
+                  </form>
+                </li>
+                </li>
+              </ul>
+              <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Buscar..." name="busqueda">
               </form>
-            </li>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..." name="busqueda">
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="jumbotron">
-      <div class="row">
-        <div class="col-md-3">
-          <div id="jstree">
-
+            </div>
           </div>
         </div>
-        <div class="col-md-9">
-          <iframe id="contenido" width="100%" height="100%">
-          </iframe>
+      </div>
+      <div class="span2 article-tree">
+        <div id="jstree">
+
         </div>
+      </div>
+      <div class="span10 content-area">
+        <iframe id="contenido" width="100%" height="100%" frameBorder="0" scrolling="no">
+        </iframe>
+      </div>
+      <div class="footer">
+        desarrollado por:
+        sebastian rojas
+        miguel camargo
       </div>
     </div>
   </body>
