@@ -26,7 +26,10 @@
           </button>
           <a class="navbar-brand" href="#">MarketPlace</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse">          
+          <form action="/vistas/registrarseVista.jsp" method="POST" class="navbar-form navbar-right">
+            <input type="submit" class="btn btn-primary" value="Registrarse">
+          </form>
           <form action="loginServlet" method="post" class="navbar-form navbar-right" role="form">
             <div class="form-group">
               <input type="text" name="nickname" placeholder="nickname" class="form-control">
@@ -36,6 +39,7 @@
             </div>
             <input type="submit" class="btn btn-success" value="Ingresar">
           </form>
+
         </div><!--/.navbar-collapse -->
       </div>
     </div>
