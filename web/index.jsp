@@ -5,6 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+  String mensaje = "";
+  mensaje = (String) session.getAttribute("mensaje");
+  mensaje = mensaje == null ? "": mensaje;
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,7 +32,7 @@
           <a class="navbar-brand" href="#">MarketPlace</a>
         </div>
         <div class="navbar-collapse collapse">          
-          <form action="/vistas/registrarseVista.jsp" method="POST" class="navbar-form navbar-right">
+          <form action="vistas/registrarseVista.jsp" method="POST" class="navbar-form navbar-right">
             <input type="submit" class="btn btn-primary" value="Registrarse">
           </form>
           <form action="loginServlet" method="post" class="navbar-form navbar-right" role="form">
@@ -48,6 +53,15 @@
         <h1>MarketPlace Turismo Ecologico</h1>
         <p>Usted aqui podra encontrar ofertas, paquetes y servicios de diferentes proveedores para lograr unas vacaciones ecologicas unicas</p>
       </div>
+      <% if(!mensaje.equals("")){
+      %>
+      <div class="alert alert-success">
+        <strong>
+          <%=mensaje%>
+        </strong>
+      </div>
+      <%
+      } %>
     </div>
   </body>
 </html>

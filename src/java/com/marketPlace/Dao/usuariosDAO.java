@@ -36,11 +36,22 @@ public class usuariosDAO {
       e.printStackTrace();
     }
   }
+  
+  public void getBuscarIdUser(int cedula) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("from Usuarios as u where u.id = " + cedula + "");
+      usuario = (Usuarios) q.uniqueResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
   public void setInfoUser(Usuarios usuario) {
     try {
       org.hibernate.Transaction tx = session.beginTransaction();
       session.save(usuario);
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     }
