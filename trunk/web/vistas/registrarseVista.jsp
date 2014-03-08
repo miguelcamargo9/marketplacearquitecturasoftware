@@ -39,7 +39,7 @@
             </h3>
           </div>
           <div class="panel-body">
-            <form action="registroServlet" method="post" class="navbar-form navbar-right" role="form">
+            <form action="../registroServlet" method="post" class="navbar-form navbar-right" role="form">
               <div class="form-group">
                 <input type="text" name="idUsuario" placeholder="Cedula" class="form-control">
                 <input type="text" name="nickname" placeholder="Nickname" class="form-control">
@@ -58,14 +58,6 @@
               </div>
               <div class="form-group">
                 <input type="text" name="correo" placeholder="Correo Electronico" class="form-control">
-                <select class="list-group" name="perfil">
-                  <option class="list-group-item" value="1">
-                    Usuario
-                  </option>
-                  <option class="list-group-item" value="1">
-                    Usuario
-                  </option>
-                </select>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-lg btn-info" value="Continuar">

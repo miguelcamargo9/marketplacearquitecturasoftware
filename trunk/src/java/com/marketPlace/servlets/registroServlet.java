@@ -5,14 +5,17 @@
 package com.marketPlace.servlets;
 
 import com.marketPlace.Dao.usuariosDAO;
+import com.marketPlace.hibernate.Perfiles;
 import com.marketPlace.hibernate.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,16 +42,20 @@ public class registroServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      /* TODO output your page here. You may use following sample code. */
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet registroServlet</title>");      
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Servlet registroServlet at " + request.getContextPath() + "</h1>");
-      out.println("</body>");
-      out.println("</html>");
+      if (bandera) {
+        HttpSession session = request.getSession();
+        session.setAttribute("mensaje", ""+usuario.getPrimerNombre()+" Tu solicitud ha sido creado con Exito!");
+        session.setMaxInactiveInterval(1);
+        response.sendRedirect("index.jsp");
+      } else {
+        HttpSession session = request.getSession();
+        session.setAttribute("error", error);
+        session.setMaxInactiveInterval(1);
+        Cookie usuarioLogeado = new Cookie("error", error);
+        usuarioLogeado.setMaxAge(1);
+        response.addCookie(usuarioLogeado);
+        response.sendRedirect("error.jsp");
+      }
     } finally {      
       out.close();
     }
@@ -82,8 +89,8 @@ public class registroServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
-    String idUsuario = request.getParameter("cedula");
+    
+    String idUsuario = request.getParameter("idUsuario");
     String nickname = request.getParameter("nickname");
     String primerNombre = request.getParameter("primerNombre");
     String segundoNombre = request.getParameter("segundoNombre");
@@ -92,14 +99,16 @@ public class registroServlet extends HttpServlet {
     String passwordMd5 = request.getParameter("password");
     String passwordMd5C = request.getParameter("passwordC");
     String correo = request.getParameter("correo");
-    String perfil = request.getParameter("perfil");
-    
     usuariosDAO usuariodao = new usuariosDAO();
     usuariodao.getBuscarInfoUser(nickname);
     
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
-      Usuarios miUsuario = new Usuarios( );
+      Perfiles miPerfil = new Perfiles(3,"Cliente",true);
+      usuario = new Usuarios(Integer.parseInt(idUsuario),miPerfil,primerNombre,primerApellido,passwordMd5,nickname,correo,false);
+      usuario.setSegundoApellido(segundoApellido);
+      usuario.setSegundoNombre(segundoNombre);
+      usuariodao.setInfoUser(usuario);
     } else {
       error += usuario != null ? "El usuario ya existe <br>" : "";
       error += idUsuario.equals("") ? "Por favor ingrese su Cedula <br>" : "";
@@ -108,6 +117,7 @@ public class registroServlet extends HttpServlet {
       error += !passwordMd5.equals(passwordMd5C) ? "Las contraseñas no coinciden Verifique <br>" : "";
       bandera = false;
     }
+    processRequest(request, response);
   }
 
   /**
