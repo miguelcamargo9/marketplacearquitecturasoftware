@@ -69,7 +69,7 @@
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-lg btn-info" value="Continuar">
-                <button class="btn btn-lg btn-danger" type="button" onclick="location.href=index.jsp">Cancelar</button>
+                <button class="btn btn-lg btn-danger" type="button" onclick="location.href='../index.jsp'">Cancelar</button>
               </div>
             </form>
           </div>
