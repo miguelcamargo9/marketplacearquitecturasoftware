@@ -42,7 +42,18 @@ public class categoriaDAO {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+  }
+
+  public void guardarCategoria(String descripcion) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Categorias categoria = new Categorias();
+      categoria.setDescripcion(descripcion);
+      session.save(categoria);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public ArrayList<Categorias> getListaCategorias() {
@@ -52,5 +63,4 @@ public class categoriaDAO {
   public Categorias getCategoria() {
     return categoria;
   }
-  
 }
