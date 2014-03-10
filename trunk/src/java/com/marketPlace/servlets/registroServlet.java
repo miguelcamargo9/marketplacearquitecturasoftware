@@ -51,10 +51,7 @@ public class registroServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("error", error);
         session.setMaxInactiveInterval(1);
-        Cookie usuarioLogeado = new Cookie("error", error);
-        usuarioLogeado.setMaxAge(1);
-        response.addCookie(usuarioLogeado);
-        response.sendRedirect("error.jsp");
+        response.sendRedirect("vistas/registrarseVista.jsp");
       }
     } finally {      
       out.close();
@@ -100,7 +97,7 @@ public class registroServlet extends HttpServlet {
     String passwordMd5C = request.getParameter("passwordC");
     String correo = request.getParameter("correo");
     usuariosDAO usuariodao = new usuariosDAO();
-    usuariodao.getBuscarInfoUser(nickname);
+    usuariodao.getBuscarUserByIdNick(nickname,Integer.parseInt(idUsuario));
     
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
