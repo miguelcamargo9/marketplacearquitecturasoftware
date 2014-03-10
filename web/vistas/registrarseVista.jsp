@@ -72,29 +72,31 @@
               <div class="form-group">
                 <input type='email' name="correo" placeholder="Correo Electronico" class="form-control" required>
               </div>
-              <div class="form-group">
+              <center>
                 <input type="submit" class="btn btn-lg btn-info" value="Continuar">
-                <button class="btn btn-lg btn-danger" type="button" onclick="location.href='../index.jsp'">Cancelar</button>
-              </div>
+                <button class="btn btn-lg btn-danger" type="button" onclick="location.href = '../index.jsp'">Cancelar</button>
+              </center>
             </form>
           </div>
         </div>
       </div>
-<!--      <div class="footer">
-        desarrollado por:
-        Sebastian Rojas
-        Miguel Camargo
-      </div>-->
+      <!--      <div class="footer">
+              desarrollado por:
+              Sebastian Rojas
+              Miguel Camargo
+            </div>-->
       <%
-      if (!error.equals("")) {
-    %>
-    <div class="alert alert-warning">
-      <strong>
-        <%=error%>
-      </strong>
-    </div>
-    <%
-        }%>
+        if (!error.equals("")) {
+      %>
+      <div class="alert alert-warning">
+        <strong>
+          <%=error%>
+        </strong>
+      </div>
+      <%
+      }
+      session.removeAttribute("error");
+      %>
     </div>
   </body>
 </html>

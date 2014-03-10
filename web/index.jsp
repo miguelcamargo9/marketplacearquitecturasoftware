@@ -9,6 +9,9 @@
   String mensaje = "";
   mensaje = (String) session.getAttribute("mensaje");
   mensaje = mensaje == null ? "": mensaje;
+  String error = "";
+  error = (String) session.getAttribute("error");
+  error = error == null ? "": error;
 %>
 <!DOCTYPE html>
 <html>
@@ -37,10 +40,10 @@
           </form>
           <form action="loginServlet" method="post" class="navbar-form navbar-right" role="form">
             <div class="form-group">
-              <input type="text" name="nickname" placeholder="nickname" class="form-control">
+              <input type="text" name="nickname" placeholder="nickname" class="form-control" required>
             </div>
             <div class="form-group">
-              <input type="password" name="password" placeholder="password" class="form-control">
+              <input type="password" name="password" placeholder="password" class="form-control" required>
             </div>
             <input type="submit" class="btn btn-success" value="Ingresar">
           </form>
@@ -61,7 +64,19 @@
         </strong>
       </div>
       <%
-      } %>
+      }
+        if (!error.equals("")) {
+      %>
+      <div class="alert alert-danger">
+        <strong>
+          <%=error%>
+        </strong>
+      </div>
+      <%
+      }
+      session.removeAttribute("error");
+      session.removeAttribute("mensaje");
+      %>
     </div>
   </body>
 </html>

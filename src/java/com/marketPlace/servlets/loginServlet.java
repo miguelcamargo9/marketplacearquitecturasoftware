@@ -52,12 +52,10 @@ public class loginServlet extends HttpServlet {
         response.sendRedirect("menu.jsp");
       } else {
         HttpSession session = request.getSession();
+        session.setAttribute("error", "");
         session.setAttribute("error", error);
         session.setMaxInactiveInterval(1);
-        Cookie usuarioLogeado = new Cookie("error", error);
-        usuarioLogeado.setMaxAge(30);
-        response.addCookie(usuarioLogeado);
-        response.sendRedirect("error.jsp");
+        response.sendRedirect("index.jsp");
       }
     } finally {
       out.close();
@@ -98,9 +96,11 @@ public class loginServlet extends HttpServlet {
     if (usuario != null && usuario.getContrasena().equals(passwordMd5)) {
       bandera = true;
     } else {
+      error = "";
       error += usuario == null ? "El usuario no existe <br>" : "";
       error += nickname.equals("") ? "Por favor ingrese su nickname <br>" : "";
       error += passwordMd5.equals("") ? "Por favor ingrese su contraseña <br>" : "";
+      error += !usuario.getContrasena().equals(passwordMd5) ? "Contraseña erronea <br>" : "";
       bandera = false;
     }
     processRequest(request, response);
