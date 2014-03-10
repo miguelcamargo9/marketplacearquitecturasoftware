@@ -17,11 +17,22 @@ import java.util.ArrayList;
 public class usuarioModelo {
 
   String listaSeleccionUsuario;
+  String listaSeleccionUsuarioEstado;
   usuariosDAO userdao = new usuariosDAO();
   ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
 
   public void crearListaUsuarios() {
     userdao.getListarUsuarios("Usuario");
+    listaUsuarios = userdao.getListaUsuarios();
+    listaSeleccionUsuario = "<select name=\"idUsuario\">";
+    listaSeleccionUsuario += "<option value=\"\">[seleccione]</option>";
+    for (Usuarios u : listaUsuarios) {
+      listaSeleccionUsuario += "<option value=\"" + u.getId() + "\">" + u.getPrimerNombre() + " " + u.getPrimerApellido() + "</option>";
+    }
+    listaSeleccionUsuario += "</select>";
+  }
+  public void crearListaUsuariosEstado(boolean estado){
+    userdao.buscarUsuariosconSolicitudes(estado);
     listaUsuarios = userdao.getListaUsuarios();
     listaSeleccionUsuario = "<select name=\"idUsuario\">";
     listaSeleccionUsuario += "<option value=\"\">[seleccione]</option>";
