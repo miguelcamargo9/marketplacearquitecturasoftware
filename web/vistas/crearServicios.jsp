@@ -87,3 +87,7 @@
         }%>
   </body>
 </html>
+<%
+  session.removeAttribute("error");
+  session.removeAttribute("exito");
+%>
