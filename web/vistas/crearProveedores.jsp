@@ -1,17 +1,9 @@
 <%-- 
-    Document   : crearProveedores
-    Created on : 6/03/2014, 11:57:40 PM
-    Author     : Sebastian Rojas
+    Document   : registrarseVista
+    Created on : 06-mar-2014, 23:50:20
+    Author     : Miguel
 --%>
-<%@page import="com.marketPlace.modelo.usuarioModelo"%>
-<%
-  String listaUsuarios = null;
-  usuarioModelo model = new usuarioModelo();
-  model.crearListaUsuarios();
-  listaUsuarios = model.getListaSeleccionUsuario();
 
-
-%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,23 +11,78 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../librerias/bootstrap-3.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../js/jstree/dist/themes/default/style.min.css">
-    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../librerias/bootstrap-3.1.1/dist/js/bootstrap.min.js"></script>
-    <title>Creacion de Proveedores</title>
+    <title>Formulario de Registro</title>
   </head>
   <body>
-    <form class="form-horizontal" action="porveedorServlet" method="post">  
-      <fieldset>  
-        <legend>Creacion de Proveedores</legend>
-        <table class="table table-hover">
-          <tr>
-            <td width="10%">Usuarios: </td>
-            <td width="90%"><%=listaUsuarios%></td>
-          </tr>
-        </table>
-        <input type="submit" value="enviar" class="btn btn-primary">
-      </fieldset>  
-    </form> 
+    <div class="container-fluid">   
+      <div class="navbar">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">MarketPlace</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Registrar Proveedor
+            </h3>
+          </div>
+          <div class="panel-body">
+            <form action="../proveedorServlet" method="post" class="navbar-form navbar-right" role="form">
+              <div class="form-group">
+                <input type="text" name="nitProveedor" placeholder="Nit Proveedor" class="form-control">
+                <input type="text" name="nickname" placeholder="Nickname" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="razonSocial" placeholder="Razon Social" class="form-control">
+              </div>
+              <div class="form-group">
+                <select name="tipoEmpresa">
+                  <option>
+                    SAS
+                  </option>
+                  <option>
+                    LTDA
+                  </option>
+                  <option>
+                    SA
+                  </option>
+                  <option>
+                    INC
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" placeholder="Password" class="form-control">
+                <input type="password" name="passwordC" placeholder="Confirme Password" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="correo" placeholder="Correo Electronico" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-lg btn-info" value="Continuar">
+                <button class="btn btn-lg btn-danger" type="button" >Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+<!--      <div class="footer">
+        desarrollado por:
+        Sebastian Rojas
+        Miguel Camargo
+      </div>-->
+    </div>
   </body>
 </html>
