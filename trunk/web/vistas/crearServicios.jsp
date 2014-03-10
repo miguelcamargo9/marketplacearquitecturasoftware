@@ -35,9 +35,9 @@
     <title>Creacion de Servicios</title>
   </head>
   <body>
-    <form class="form-horizontal" action="../adjuntoServlet" method="post">  
+    <form class="form-horizontal" action="../servicioServlet" method="post">  
       <fieldset>  
-        <legend>Creacion de Adjuntos</legend>
+        <legend>Creacion de Servicios</legend>
         <table class="table table-hover">
           <tr>
             <td width="10%">Categoria: </td>
@@ -48,7 +48,7 @@
           <tr>
             <td width="10%">Descripcion: </td>
             <td width="90%">
-            <input type="text" class="form-control" name="valor" placeholder="Descripcion...">
+            <input type="text" class="form-control" name="descripcion" placeholder="Descripcion...">
             </td>
           <tr>
             <td width="10%">Adjunto: </td>

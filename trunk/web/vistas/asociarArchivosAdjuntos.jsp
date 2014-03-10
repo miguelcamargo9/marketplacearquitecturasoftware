@@ -36,7 +36,7 @@
   <body>
     <form class="form-horizontal" action="../adjuntosArchivosServlet" method="post">  
       <fieldset>  
-        <legend>Creacion de Adjuntos</legend>
+        <legend>Asociar Adjuntos con Archivos</legend>
         <table class="table table-hover">
           <tr>
             <td width="10%">Adjunto: </td>

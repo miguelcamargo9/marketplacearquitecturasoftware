@@ -21,7 +21,7 @@ public class serviciosModelo {
   public void crearListaSeleccionCategorias() {
     categoriasdao.getTodaslasCategorias();
     categoriasLista = categoriasdao.getListaCategorias();
-    listaSelecciondeCategorias = "<select name=\"idAdjunto\">";
+    listaSelecciondeCategorias = "<select name=\"idCategoria\">";
     listaSelecciondeCategorias += "<option value=\"\">[seleccione]</option>";
     for (Categorias c : categoriasLista) {
       listaSelecciondeCategorias += "<option value=\"" + c.getId() + "\">" + c.getDescripcion() + "</option>";

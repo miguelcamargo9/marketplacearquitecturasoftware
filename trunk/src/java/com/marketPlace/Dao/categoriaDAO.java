@@ -17,8 +17,8 @@ import org.hibernate.Session;
 public class categoriaDAO {
 
   Session session = null;
-  ArrayList<Categorias> listaCategorias;
   Categorias categoria;
+  ArrayList<Categorias> listaCategorias;
 
   public categoriaDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -34,7 +34,7 @@ public class categoriaDAO {
     }
   }
 
-  public Categorias getCategoriaEspecifica(String id) {
+  public void getCategoriaEspecifica(String id) {
     try {
       org.hibernate.Transaction tx = session.beginTransaction();
       Query q = session.createQuery("from Categorias as c where c.id= '" + id + "'");
@@ -42,10 +42,15 @@ public class categoriaDAO {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return categoria;
+    
   }
 
   public ArrayList<Categorias> getListaCategorias() {
     return listaCategorias;
   }
+
+  public Categorias getCategoria() {
+    return categoria;
+  }
+  
 }

@@ -16,8 +16,6 @@ import org.hibernate.Session;
  */
 public class servicioDAO {
   Session session = null;
-  categoriaDAO categoriadao;
-  adjuntoDAO adjuntodao;
   Categorias categoria;
   Adjuntos adjunto;
   
@@ -26,18 +24,18 @@ public class servicioDAO {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
   
-  public void guardarServicio(String idCategoria, String descripcion, int idAdjunto, int valor, boolean estado) {
+  public void guardarServicio(String idCategoria, String descripcion, int idAdjunto, int valor, int estado) {
     try {
-      categoria = categoriadao.getCategoriaEspecifica(idCategoria);
-      adjuntodao.buscarAdjuntos(""+idAdjunto);
-      adjunto = adjuntodao.getAdjunto();
+      categoriaDAO categoriadao = new categoriaDAO();
+      categoriadao.getCategoriaEspecifica(idCategoria);
+      categoria = categoriadao.getCategoria();
       org.hibernate.Transaction tx = session.beginTransaction();
       Servicios servicio = new Servicios();
       servicio.setCategorias(categoria);
       servicio.setDescripcion(descripcion);
       servicio.setIdAdjunto(idAdjunto);
       servicio.setValor(valor);
-      servicio.setEstado(valor);
+      servicio.setEstado(estado);
       session.save(servicio);
       tx.commit();
     } catch (Exception e) {
