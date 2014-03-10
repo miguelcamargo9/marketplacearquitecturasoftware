@@ -15,22 +15,7 @@
     <title>Formulario de Registro</title>
   </head>
   <body>
-    <div class="container-fluid">   
-      <div class="navbar">
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">MarketPlace</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!--<div class="container-fluid">-->   
       <div class="col-sm-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -39,9 +24,11 @@
             </h3>
           </div>
           <div class="panel-body">
-            <form action="../proveedorServlet" method="post" class="navbar-form navbar-right" role="form">
+            <form action="../proveedorServlet" method="post" class="form-horizontal" role="form">
               <div class="form-group">
                 <input type="text" name="nitProveedor" placeholder="Nit Proveedor" class="form-control">
+              </div>
+              <div class="form-group">
                 <input type="text" name="nickname" placeholder="Nickname" class="form-control">
               </div>
               <div class="form-group">
@@ -65,15 +52,16 @@
               </div>
               <div class="form-group">
                 <input type="password" name="password" placeholder="Password" class="form-control">
+              </div>
+              <div class="form-group">
                 <input type="password" name="passwordC" placeholder="Confirme Password" class="form-control">
               </div>
               <div class="form-group">
                 <input type="text" name="correo" placeholder="Correo Electronico" class="form-control">
               </div>
-              <div class="form-group">
+              <center>
                 <input type="submit" class="btn btn-lg btn-info" value="Continuar">
-                <button class="btn btn-lg btn-danger" type="button" >Cancelar</button>
-              </div>
+              </center>
             </form>
           </div>
         </div>
@@ -83,6 +71,6 @@
         Sebastian Rojas
         Miguel Camargo
       </div>-->
-    </div>
+    <!--</div>-->
   </body>
 </html>

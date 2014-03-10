@@ -47,6 +47,16 @@ public class usuariosDAO {
     }
   }
 
+  public void getBuscarUserByIdNick(String nickname, int idUsuario) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("from Usuarios as u where u.nickname = '" + nickname + "' or u.id = "+ idUsuario +"");
+      usuario = (Usuarios) q.uniqueResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
   public void setInfoUser(Usuarios usuario) {
     try {
       org.hibernate.Transaction tx = session.beginTransaction();

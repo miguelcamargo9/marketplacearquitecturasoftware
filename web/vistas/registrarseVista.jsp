@@ -5,6 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+  String error = "";
+  error = (String) session.getAttribute("error");
+  error = error == null ? "" : error;
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,31 +46,31 @@
           <div class="panel-body">
             <form action="../registroServlet" method="post" class="form-horizontal" role="form">
               <div class="form-group">
-                <input type="text" name="idUsuario" placeholder="Cedula" class="form-control">
+                <input type="text" name="idUsuario" placeholder="Cedula" class="form-control" required>
               </div>
               <div class="form-group">
-                <input type="text" name="nickname" placeholder="Nickname" class="form-control">
+                <input type="text" name="nickname" placeholder="Nickname" class="form-control" required>
               </div>
               <div class="form-group">
-                <input type="text" name="primerNombre" placeholder="Primer Nombre" class="form-control">
+                <input type="text" name="primerNombre" placeholder="Primer Nombre" class="form-control" required>
               </div>
               <div class="form-group">
                 <input type="text" name="segundoNombre" placeholder="Segundo Nombre" class="form-control">
               </div>
               <div class="form-group">
-                <input type="text" name="primerApellido" placeholder="Primer Apellido" class="form-control">
+                <input type="text" name="primerApellido" placeholder="Primer Apellido" class="form-control" required>
               </div>
               <div class="form-group">
                 <input type="text" name="segundoApellido" placeholder="Segundo Apellido" class="form-control">
               </div>
               <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control">
+                <input type="password" name="password" placeholder="Password" class="form-control" required>
               </div>
               <div class="form-group">
-                <input type="password" name="passwordC" placeholder="Confirme Password" class="form-control">
+                <input type="password" name="passwordC" placeholder="Confirme Password" class="form-control" required>
               </div>
               <div class="form-group">
-                <input type="text" name="correo" placeholder="Correo Electronico" class="form-control">
+                <input type='email' name="correo" placeholder="Correo Electronico" class="form-control" required>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-lg btn-info" value="Continuar">
@@ -80,6 +85,16 @@
         Sebastian Rojas
         Miguel Camargo
       </div>-->
+      <%
+      if (!error.equals("")) {
+    %>
+    <div class="alert alert-warning">
+      <strong>
+        <%=error%>
+      </strong>
+    </div>
+    <%
+        }%>
     </div>
   </body>
 </html>

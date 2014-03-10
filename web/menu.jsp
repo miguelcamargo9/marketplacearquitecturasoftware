@@ -63,7 +63,7 @@
       }
 
       .article-tree {
-        height:70%;
+        height:75%;
         width: 25%;
         float:left;
         border-right: 2px solid #ccc; 
@@ -71,7 +71,7 @@
 
       .content-area {
         overflow: auto;
-        height: 70%;
+        height: 75%;
       }
 
       .footer {
@@ -171,7 +171,7 @@
         </div>
       </div>
       <div class="span10 content-area">
-        <iframe id="contenido" width="100%" height="100%" frameBorder="0" scrolling="no">
+        <iframe id="contenido" width="100%" height="98%" frameBorder="0" scrolling="no">
         </iframe>
       </div>
       <div class="footer">
