@@ -4,9 +4,7 @@
  */
 package com.marketPlace.servlets;
 
-import com.marketPlace.Dao.usuariosDAO;
-import com.marketPlace.hibernate.Perfiles;
-import com.marketPlace.hibernate.Usuarios;
+import com.marketPlace.Dao.ofertaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,18 +12,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Sebastian Rojas
+ * @author Miguel
  */
-@WebServlet(name = "proveedorServlet", urlPatterns = {"/proveedorServlet"})
-public class proveedorServlet extends HttpServlet {
+@WebServlet(name = "buscarOfertasServlet", urlPatterns = {"/buscarOfertasServlet"})
+public class buscarOfertasServlet extends HttpServlet {
 
-  Usuarios usuario;
-  private boolean bandera;
-  private String error = "";
   /**
    * Processes requests for both HTTP
    * <code>GET</code> and
@@ -42,17 +36,15 @@ public class proveedorServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     try {
       /* TODO output your page here. You may use following sample code. */
-      if (bandera) {
-        HttpSession session = request.getSession();
-        session.setAttribute("mensaje", ""+usuario.getPrimerNombre()+" Tu registro ha sido creado con Exito!");
-        session.setMaxInactiveInterval(1);
-        response.sendRedirect("vistas/crearProveedores.jsp");
-      } else {
-        HttpSession session = request.getSession();
-        session.setAttribute("error", error);
-        session.setMaxInactiveInterval(1);
-        response.sendRedirect("vistas/crearProveedores.jsp");
-      }
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("<title>Servlet buscarOfertasServlet</title>");      
+      out.println("</head>");
+      out.println("<body>");
+      out.println("<h1>Servlet buscarOfertasServlet at " + request.getContextPath() + "</h1>");
+      out.println("</body>");
+      out.println("</html>");
     } finally {      
       out.close();
     }
@@ -86,30 +78,8 @@ public class proveedorServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String nitProveedor = request.getParameter("nitProveedor");
-    String nickname = request.getParameter("nickname");
-    String razonSocial = request.getParameter("razonSocial");
-    String tipoEmpresa = request.getParameter("tipoEmpresa");
-    String passwordMd5 = request.getParameter("password");
-    String passwordMd5C = request.getParameter("passwordC");
-    String correo = request.getParameter("correo");
-    usuariosDAO usuariodao = new usuariosDAO();
-    usuariodao.getBuscarInfoUser(nickname);
-    
-    if (usuario == null && passwordMd5.equals(passwordMd5C)) {
-      bandera = true;
-      Perfiles miPerfil = new Perfiles(3,"Proveedor",true);
-      usuario = new Usuarios(Integer.parseInt(nitProveedor),miPerfil,razonSocial,tipoEmpresa,passwordMd5,nickname,correo,true);
-      usuariodao.setInfoUser(usuario);
-    } else {
-      error += usuario != null ? "El usuario ya existe <br>" : "";
-      error += nitProveedor.equals("") ? "Por favor ingrese su Cedula <br>" : "";
-      error += nickname.equals("") ? "Por favor ingrese su nickname <br>" : "";
-      error += passwordMd5.equals("") ? "Por favor ingrese su contraseña <br>" : "";
-      error += !passwordMd5.equals(passwordMd5C) ? "Las contraseñas no coinciden Verifique <br>" : "";
-      bandera = false;
-    }
-    
+    String Descr = request.getParameter("nombreOferta");
+    ofertaDAO ofertadao = new ofertaDAO();
     processRequest(request, response);
   }
 

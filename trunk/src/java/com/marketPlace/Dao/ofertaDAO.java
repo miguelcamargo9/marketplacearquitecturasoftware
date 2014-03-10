@@ -7,7 +7,11 @@ package com.marketPlace.Dao;
 import com.marketPlace.hibernate.HibernateUtil;
 import com.marketPlace.hibernate.Ofertas;
 import com.marketPlace.hibernate.Paquetes;
+import com.marketPlace.hibernate.Permisos;
+import com.marketPlace.hibernate.Usuarios;
+import java.util.ArrayList;
 import java.util.Date;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -18,6 +22,7 @@ public class ofertaDAO {
 
   Session session = null;
   Paquetes paquete;
+  Ofertas oferta;
 
   public ofertaDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -41,5 +46,16 @@ public class ofertaDAO {
       e.printStackTrace();
     }
 
+  }
+  
+  public void getListarUsuarios(String condicion) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("from Permisos as p where p.descripcion = '" + condicion + "'");
+//      listaUsuarios = (ArrayList<Usuarios>) q1.list();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

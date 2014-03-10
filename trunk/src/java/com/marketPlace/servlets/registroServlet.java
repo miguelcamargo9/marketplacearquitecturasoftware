@@ -98,10 +98,10 @@ public class registroServlet extends HttpServlet {
     String correo = request.getParameter("correo");
     usuariosDAO usuariodao = new usuariosDAO();
     usuariodao.getBuscarUserByIdNick(nickname,Integer.parseInt(idUsuario));
-    
+    usuario = usuariodao.getUsuario();
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
-      Perfiles miPerfil = new Perfiles(3,"Cliente",true);
+      Perfiles miPerfil = new Perfiles(2,"Cliente",true);
       usuario = new Usuarios(Integer.parseInt(idUsuario),miPerfil,primerNombre,primerApellido,passwordMd5,nickname,correo,false);
       usuario.setSegundoApellido(segundoApellido);
       usuario.setSegundoNombre(segundoNombre);
