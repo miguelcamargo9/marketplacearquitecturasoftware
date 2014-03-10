@@ -46,7 +46,7 @@ public class usuariosDAO {
       e.printStackTrace();
     }
   }
-
+ 
   public void getBuscarUserByIdNick(String nickname, int idUsuario) {
     try {
       org.hibernate.Transaction tx = session.beginTransaction();
@@ -67,14 +67,36 @@ public class usuariosDAO {
     }
   }
 
-  public void getListarUsuarios(String condicion) {
+  public void getListarUsuarios(String descripcion) {
     try {
       org.hibernate.Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("from Permisos as p where p.descripcion = '" + condicion + "'");
+      Query q = session.createQuery("from Permisos as p where p.descripcion = '" + descripcion + "'");
       permiso = (Permisos) q.uniqueResult();
       Query q1 = session.createQuery("from Usuarios as u where u.Perfiles = " + permiso);
       listaUsuarios = (ArrayList<Usuarios>) q1.list();
 
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public void buscarUsuariosconSolicitudes(boolean estado) {
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("from Usuarios as u where u.estado = " + estado);
+      listaUsuarios = (ArrayList<Usuarios>) q.list();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public void actualizarInformacionUsuario(int idUsuario) {
+    getBuscarIdUser(idUsuario);
+    usuario.setEstado(true);
+    try {
+      org.hibernate.Transaction tx = session.beginTransaction();
+      session.update(usuario);
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     }

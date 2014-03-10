@@ -4,9 +4,7 @@
  */
 package com.marketPlace.servlets;
 
-import com.marketPlace.Dao.adjuntoDAO;
-import com.marketPlace.hibernate.Adjuntos;
-import com.marketPlace.hibernate.Archivos;
+import com.marketPlace.Dao.usuariosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,13 +18,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Sebastian Rojas
  */
-@WebServlet(name = "adjuntosArchivosServlet", urlPatterns = {"/adjuntosArchivosServlet"})
-public class adjuntosArchivosServlet extends HttpServlet {
+@WebServlet(name = "validarUsuarioServlet", urlPatterns = {"/validarUsuarioServlet"})
+public class validarUsuarioServlet extends HttpServlet {
 
   String error = "";
   boolean bandera = true;
-  Adjuntos adjunto;
-  Archivos archivo;
 
   /**
    * Processes requests for both HTTP
@@ -44,18 +40,18 @@ public class adjuntosArchivosServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     try {
       if (bandera) {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         session.setAttribute("exito", "");
         session.setAttribute("error", "");
         if (session != null) {
-          session.setAttribute("exito", "Se creo con exito la asociacion");
-          response.sendRedirect("vistas/asociarArchivosAdjuntos.jsp");
+          session.setAttribute("exito", "Se acepto con exito al cliente");
+          response.sendRedirect("vistas/validarCliente.jsp");
         }
       } else {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         if (session != null) {
           session.setAttribute("error", error);
-          response.sendRedirect("vistas/asociarArchivosAdjuntos.jsp");
+          response.sendRedirect("vistas/validarCliente.jsp");
         }
       }
     } finally {
@@ -91,17 +87,14 @@ public class adjuntosArchivosServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String idadjuntos = request.getParameter("idAdjunto");
-    String idarchivos = request.getParameter("idArchivo");
-    if (idadjuntos.equals("")) {
-      error += "Por favor seleccione un adjunto";
-      bandera = false;
-    } else if (idarchivos.equals("")) {
-      error += "Por favor seleccione un archivo";
+
+    if (request.getParameter("idUsuario").equals("") || request.getParameter("idUsuario") == null) {
+      error += "Por favor seleccione un usuario...<br>";
       bandera = false;
     } else {
-      adjuntoDAO adjundao = new adjuntoDAO();
-      adjundao.guardarAdjuntosArchivos(idadjuntos, idarchivos);
+      int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+      usuariosDAO usuariodao = new usuariosDAO();
+      usuariodao.actualizarInformacionUsuario(idUsuario);
     }
     processRequest(request, response);
   }
