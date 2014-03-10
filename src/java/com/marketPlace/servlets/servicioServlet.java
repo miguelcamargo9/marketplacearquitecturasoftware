@@ -4,6 +4,9 @@
  */
 package com.marketPlace.servlets;
 
+import com.marketPlace.Dao.categoriaDAO;
+import com.marketPlace.Dao.servicioDAO;
+import com.marketPlace.hibernate.Categorias;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "servicioServlet", urlPatterns = {"/servicioServlet"})
 public class servicioServlet extends HttpServlet {
+
+  String error = "";
+  boolean bandera = true;
+  Categorias categoria;
 
   /**
    * Processes requests for both HTTP
@@ -34,16 +42,22 @@ public class servicioServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      /* TODO output your page here. You may use following sample code. */
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet servicioServlet</title>");      
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Servlet servicioServlet at " + request.getContextPath() + "</h1>");
-      out.println("</body>");
-      out.println("</html>");
-    } finally {      
+      if (bandera) {
+        HttpSession session = request.getSession(false);
+        session.setAttribute("exito", "");
+        session.setAttribute("error", "");
+        if (session != null) {
+          session.setAttribute("exito", "Se creo con exito el servicio");
+          response.sendRedirect("vistas/crearServicios.jsp");
+        }
+      } else {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+          session.setAttribute("error", error);
+          response.sendRedirect("vistas/crearServicios.jsp");
+        }
+      }
+    } finally {
       out.close();
     }
   }
@@ -76,7 +90,14 @@ public class servicioServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    
+    categoriaDAO categoriadao = new categoriaDAO();
+    servicioDAO serviciodao = new servicioDAO();
+    String idCategoria = request.getParameter("idCategoria");
+    String descripcion = request.getParameter("descripcion");
+    int idAdjunto = Integer.parseInt(request.getParameter("idAdjunto"));
+    int valor = Integer.parseInt(request.getParameter("valor"));
+    int estado = 1;
+    serviciodao.guardarServicio(idCategoria, descripcion, idAdjunto, valor, estado);
     processRequest(request, response);
   }
 
