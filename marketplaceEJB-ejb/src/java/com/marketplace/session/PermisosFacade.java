@@ -10,6 +10,7 @@ import com.marketplace.entities.Permisos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,13 @@ public class PermisosFacade extends AbstractFacade<Permisos> {
 
   public PermisosFacade() {
     super(Permisos.class);
+  }
+  public Permisos getPerfilEspecifico(Integer id) {
+    Permisos permiso = null;
+    Query query = getEntityManager().createNamedQuery("Permisos.findById");
+    query.setParameter("id", id);
+    permiso = (Permisos) query.getSingleResult();
+    return permiso;
   }
   
 }
