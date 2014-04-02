@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.marketplace.session;
 
 import com.marketplace.entities.Menus;
+import com.marketplace.entities.Permisos;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,6 +23,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class MenusFacade extends AbstractFacade<Menus> {
+
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
 
@@ -28,5 +35,18 @@ public class MenusFacade extends AbstractFacade<Menus> {
   public MenusFacade() {
     super(Menus.class);
   }
-  
+
+  public ArrayList<Menus> getMenuPerfil(Permisos permiso) {
+    ArrayList<Menus> menuUsuario = new ArrayList<>();
+    List<String> opciones = Arrays.asList(permiso.getOpciones().split("\\,"));
+    for (String a : opciones) {
+      Menus opcion;
+      Query query = getEntityManager().createNamedQuery("Menus.findById");
+      query.setParameter("id", Integer.parseInt(a));
+      opcion = (Menus) query.getSingleResult();
+      menuUsuario.add(opcion);
+    }
+    return menuUsuario;
+  }
+
 }

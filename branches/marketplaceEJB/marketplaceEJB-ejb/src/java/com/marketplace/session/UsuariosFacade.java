@@ -10,6 +10,7 @@ import com.marketplace.entities.Usuarios;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,13 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
 
   public UsuariosFacade() {
     super(Usuarios.class);
+  }
+  public Usuarios getBuscarInfoUser(String nickname) {
+    Usuarios usuario = null;
+    Query query = getEntityManager().createNamedQuery("Usuarios.findByNickname");
+    query.setParameter("nickname", nickname);
+    usuario = (Usuarios) query.getSingleResult();
+    return usuario;
   }
   
 }
