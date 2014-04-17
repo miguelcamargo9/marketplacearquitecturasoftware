@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Sebastian Rojas
  */
+
 @Entity
 @Table(name = "usuarios", catalog = "marketplace", schema = "")
 @XmlRootElement
