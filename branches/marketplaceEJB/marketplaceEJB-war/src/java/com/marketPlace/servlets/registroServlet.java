@@ -102,7 +102,7 @@ public class registroServlet extends HttpServlet {
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
       Perfiles miPerfil = new Perfiles(2,"Cliente",true);
-      usuario = new Usuarios(Integer.parseInt(idUsuario),nickname,passwordMd5,false);
+      usuario = new Usuarios(Integer.parseInt(idUsuario),nickname,passwordMd5,true);
       usuario.setIdPerfil(2);
       usuario.setPrimerNombre(primerNombre);
       usuario.setPrimerApellido(primerApellido);
