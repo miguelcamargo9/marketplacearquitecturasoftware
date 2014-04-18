@@ -31,10 +31,21 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
   }
   public Usuarios getBuscarInfoUser(String nickname) {
     Usuarios usuario = null;
-    Query query = getEntityManager().createNamedQuery("Usuarios.findByNickname");
+    Query query = null;
+    try {
+      query = getEntityManager().createNamedQuery("Usuarios.findByNickname");
+	  }
+	  catch (NullPointerException npe) {
+      return usuario;
+	  }
+   
     query.setParameter("nickname", nickname);
     usuario = (Usuarios) query.getSingleResult();
     return usuario;
+  }
+  
+  public void setUsuario(Usuarios usuario){
+    this.create(usuario);
   }
   
 }
