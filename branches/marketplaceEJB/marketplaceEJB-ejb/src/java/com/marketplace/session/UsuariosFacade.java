@@ -39,13 +39,13 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     Query query = null;
     try {
       query = getEntityManager().createNamedQuery("Usuarios.findByNickname");
-	  }
-	  catch (NullPointerException npe) {
+      query.setParameter("nickname", nickname);
+      usuario = (Usuarios) query.getSingleResult();
+    } catch (javax.persistence.NoResultException e) {
       return usuario;
-	  }
-   
-    query.setParameter("nickname", nickname);
-    usuario = (Usuarios) query.getSingleResult();
+    } catch (NullPointerException e) {
+      return usuario;
+    }
     return usuario;
   }
 
@@ -85,8 +85,8 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     return listaUsuarios;
   }
 
-  public void setUsuario(Usuarios usuario){
-    this.create(usuario);
+  public void setUsuario(Usuarios usuario) {
+    em.persist(usuario);
   }
-  
+
 }

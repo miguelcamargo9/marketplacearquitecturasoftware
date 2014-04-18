@@ -10,6 +10,7 @@ import com.marketplace.entities.Perfiles;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,14 @@ public class PerfilesFacade extends AbstractFacade<Perfiles> {
 
   public PerfilesFacade() {
     super(Perfiles.class);
+  }
+  
+  public Perfiles getPerfilPorDescripcion(String descripcion) {
+    Perfiles perfiles = null;
+    Query query = getEntityManager().createNamedQuery("Perfiles.findByDescripcion");
+    query.setParameter("descripcion", descripcion);
+    perfiles = (Perfiles) query.getSingleResult();
+    return perfiles;
   }
   
 }
