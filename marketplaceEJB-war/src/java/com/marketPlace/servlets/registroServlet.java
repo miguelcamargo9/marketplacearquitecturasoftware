@@ -10,6 +10,7 @@ import com.marketplace.entities.Usuarios;
 import com.marketplace.session.UsuariosFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -24,10 +25,13 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "registroServlet", urlPatterns = {"/registroServlet"})
 public class registroServlet extends HttpServlet {
+  @EJB
+  private UsuariosFacade usuariosFacade;
 
   Usuarios usuario;
   private boolean bandera;
   private String error = "";
+  
   /**
    * Processes requests for both HTTP
    * <code>GET</code> and
@@ -97,8 +101,7 @@ public class registroServlet extends HttpServlet {
     String passwordMd5 = request.getParameter("password");
     String passwordMd5C = request.getParameter("passwordC");
     String correo = request.getParameter("correo");
-    UsuariosFacade usuarioFac = new UsuariosFacade();
-    usuario = usuarioFac.getBuscarInfoUser(nickname);
+    usuario = usuariosFacade.getBuscarInfoUser(nickname);
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
       Perfiles miPerfil = new Perfiles(2,"Cliente",true);
@@ -109,7 +112,7 @@ public class registroServlet extends HttpServlet {
       usuario.setSegundoApellido(segundoApellido);
       usuario.setSegundoNombre(segundoNombre);
       usuario.setCorreo(correo);
-      usuarioFac.setUsuario(this.usuario);
+      usuariosFacade.setUsuario(this.usuario);
     } else {
       error += usuario != null ? "El usuario ya existe <br>" : "";
       error += idUsuario.equals("") ? "Por favor ingrese su Cedula <br>" : "";
