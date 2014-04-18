@@ -29,4 +29,9 @@ public class CategoriasFacade extends AbstractFacade<Categorias> {
     super(Categorias.class);
   }
   
+  public void guardarCategoria(String descripcion) {
+     Categorias categoria = new Categorias();
+     categoria.setDescripcion(descripcion);
+     em.persist(categoria);
+  }
 }
