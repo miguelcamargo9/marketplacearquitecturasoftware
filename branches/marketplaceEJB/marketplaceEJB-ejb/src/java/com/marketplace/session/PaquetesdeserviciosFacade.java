@@ -6,7 +6,10 @@
 
 package com.marketplace.session;
 
+import com.marketplace.entities.Paquetes;
 import com.marketplace.entities.Paquetesdeservicios;
+import com.marketplace.entities.Servicios;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +20,14 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PaquetesdeserviciosFacade extends AbstractFacade<Paquetesdeservicios> {
+  @EJB
+  private ServiciosFacade serviciosFacade;
+  @EJB
+  private PaquetesFacade paquetesFacade;
+  
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
+  
 
   @Override
   protected EntityManager getEntityManager() {
@@ -27,6 +36,17 @@ public class PaquetesdeserviciosFacade extends AbstractFacade<Paquetesdeservicio
 
   public PaquetesdeserviciosFacade() {
     super(Paquetesdeservicios.class);
+  }
+  public void guardarPaquetedeServicios(String idPaquete, String idServicio) {
+    Paquetes paquete = new Paquetes();
+    Servicios servicio = new Servicios();
+    Paquetesdeservicios paqueteServicio = new Paquetesdeservicios();
+    paquete = paquetesFacade.getPaquetePorId(Integer.parseInt(idPaquete));
+    servicio = serviciosFacade.getServicioPorId(Integer.parseInt(idServicio));
+    paqueteServicio.setIdPaquete(paquete);
+    paqueteServicio.setIdServicio(servicio);
+    paqueteServicio.setEstado(true);
+    em.persist(paqueteServicio);
   }
   
 }
