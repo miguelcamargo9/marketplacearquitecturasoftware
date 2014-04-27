@@ -42,7 +42,7 @@
             <div class="form-group">
               <input type="text" name="razonSocial" placeholder="Razon Social" class="form-control" required>
             </div>
-            <div class="form-group">
+<!--            <div class="form-group">
               Nombre Comercial:
               <select name="tipoEmpresa">
                 <option selected>
@@ -58,7 +58,7 @@
                   INC
                 </option>
               </select>
-            </div>
+            </div>-->
             <div class="form-group">
               <input type="password" name="password" placeholder="Password" class="form-control" required>
             </div>
