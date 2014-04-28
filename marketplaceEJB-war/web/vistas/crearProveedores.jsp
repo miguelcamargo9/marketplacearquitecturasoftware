@@ -24,6 +24,27 @@
   </head>
   <body>
     <!--<div class="container-fluid">-->   
+    <% if (!mensaje.equals("")) {
+    %>
+    <div class="alert alert-success">
+      <strong>
+        <%=mensaje%>
+      </strong>
+    </div>
+    <%
+      }
+      if (!error.equals("")) {
+    %>
+    <div class="alert alert-danger">
+      <strong>
+        <%=error%>
+      </strong>
+    </div>
+    <%
+      }
+      session.removeAttribute("error");
+      session.removeAttribute("mensaje");
+    %>
     <div class="col-sm-6">
       <div class="panel panel-primary">
         <div class="panel-heading">
@@ -42,23 +63,23 @@
             <div class="form-group">
               <input type="text" name="razonSocial" placeholder="Razon Social" class="form-control" required>
             </div>
-<!--            <div class="form-group">
-              Nombre Comercial:
-              <select name="tipoEmpresa">
-                <option selected>
-                  SAS
-                </option>
-                <option>
-                  LTDA
-                </option>
-                <option>
-                  SA
-                </option>
-                <option>
-                  INC
-                </option>
-              </select>
-            </div>-->
+            <!--            <div class="form-group">
+                          Nombre Comercial:
+                          <select name="tipoEmpresa">
+                            <option selected>
+                              SAS
+                            </option>
+                            <option>
+                              LTDA
+                            </option>
+                            <option>
+                              SA
+                            </option>
+                            <option>
+                              INC
+                            </option>
+                          </select>
+                        </div>-->
             <div class="form-group">
               <input type="password" name="password" placeholder="Password" class="form-control" required>
             </div>
@@ -74,27 +95,6 @@
           </form>
         </div>
       </div>
-      <% if (!mensaje.equals("")) {
-      %>
-      <div class="alert alert-success">
-        <strong>
-          <%=mensaje%>
-        </strong>
-      </div>
-      <%
-        }
-        if (!error.equals("")) {
-      %>
-      <div class="alert alert-danger">
-        <strong>
-          <%=error%>
-        </strong>
-      </div>
-      <%
-        }
-        session.removeAttribute("error");
-        session.removeAttribute("mensaje");
-      %>
     </div>
     <!--      <div class="footer">
             desarrollado por:
