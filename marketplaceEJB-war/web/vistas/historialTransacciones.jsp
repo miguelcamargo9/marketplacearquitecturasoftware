@@ -12,9 +12,9 @@
   exito = (String) session.getAttribute("exito");
   error = (String) session.getAttribute("error");
   idUsuario = (String) session.getAttribute("idUsuario");
-  exito = exito == null ? "": exito;
-  error = error == null ? "": error;
-  idUsuario = idUsuario == null ? "0": error;
+  exito = exito == null ? "" : exito;
+  error = error == null ? "" : error;
+  idUsuario = idUsuario == null ? "0" : idUsuario;
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
         <input type="hidden" value="<%=idUsuario%>" name="idUsuario">
         <table class="table table-hover">
           <tr>
-           <td width="10%">Fecha Inicial: </td>
+            <td width="10%">Fecha Inicial: </td>
             <td width="40%">
               <input type="date" class="form-control" name="fechaInicial">
             </td>

@@ -29,6 +29,9 @@
       <th>
         Oferta
       </th>
+      <th>
+        fecha
+      </th>
     </thead>
     <tbody>
       <%
@@ -36,13 +39,34 @@
       %>
       <tr>
         <td>
-          <%=transaccion.getIdPaquete().getDescripcion()%>
+          <%
+            try {
+              out.print(transaccion.getIdPaquete().getDescripcion());
+            } catch (NullPointerException e) {
+              out.print("Sin registros");
+            }
+          %>
         </td>
         <td>
-          <%=transaccion.getIdServicio().getDescripcion()%>
+          <%
+            try {
+              out.print(transaccion.getIdServicio().getDescripcion());
+            } catch (NullPointerException e) {
+              out.print("Sin registros");
+            }
+          %>
         </td>
         <td>
-          <%=transaccion.getIdOferta().getDescripcion()%>
+          <%
+            try {
+              out.print(transaccion.getIdOferta().getDescripcion());
+            } catch (NullPointerException e) {
+              out.print("Sin registros");
+            }
+          %>
+        </td>
+        <td>
+          <%=transaccion.getFechaTransaccion()%>
         </td>
       </tr>
       <%
