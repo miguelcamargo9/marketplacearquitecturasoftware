@@ -35,8 +35,7 @@ public class historialTransaccionesServlet extends HttpServlet {
   String error = "";
 
   /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-   * methods.
+   * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    *
    * @param request servlet request
    * @param response servlet response
@@ -52,6 +51,10 @@ public class historialTransaccionesServlet extends HttpServlet {
         if (session != null) {
           session.setAttribute("listaTransacciones", listaTransacciones);
           response.sendRedirect("vistas/listaTransacciones.jsp");
+          try {
+
+          } catch (NullPointerException e) {
+          }
         }
       } else {
         HttpSession session = request.getSession();
