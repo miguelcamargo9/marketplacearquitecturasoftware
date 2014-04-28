@@ -80,6 +80,12 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
     query.setParameter("estado", estado);
     listaUsuarios = query.getResultList();
   }
+  
+  public void buscarListaProveedores(String descripcion) {
+    Query query = getEntityManager().createNamedQuery("Usuarios.findByDescripcionProveedor");
+    query.setParameter("nombreComercial", descripcion);
+    listaUsuarios = query.getResultList();
+  }
 
   public List<Usuarios> getListaUsuarios() {
     return listaUsuarios;
