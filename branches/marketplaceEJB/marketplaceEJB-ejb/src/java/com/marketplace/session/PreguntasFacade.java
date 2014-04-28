@@ -6,6 +6,7 @@
 package com.marketplace.session;
 
 import com.marketplace.entities.Preguntas;
+import com.marketplace.entities.Usuarios;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
   private EntityManager em;
   
   private List<Preguntas> listaPreguntas;
-
+  UsuariosFacade usuariosFacade;
   @Override
   protected EntityManager getEntityManager() {
     return em;
@@ -33,9 +34,12 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
     super(Preguntas.class);
   }
 
-  public void buscarPreguntasSinResponder(boolean estado) {
-    Query query = getEntityManager().createNamedQuery("Preguntas.findByEstado");
+  public void buscarPreguntasSinResponder(boolean estado, Integer idProveedor) {
+    Usuarios proveedor = null;
+    proveedor = usuariosFacade.getBuscarIdUser(idProveedor);
+    Query query = getEntityManager().createNamedQuery("Preguntas.findByEstadoProveedor");
     query.setParameter("estado", estado);
+    query.setParameter("idProveedor", proveedor);
     listaPreguntas = query.getResultList();
   }
   
