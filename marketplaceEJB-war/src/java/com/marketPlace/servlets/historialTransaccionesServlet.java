@@ -5,12 +5,13 @@
  */
 package com.marketPlace.servlets;
 
-import com.google.gson.Gson;
-import com.marketPlace.modelo.ofertasModelo;
-import com.marketplace.entities.Ofertas;
-import com.marketplace.session.OfertasFacade;
+import com.marketplace.entities.Transacciones;
+import com.marketplace.session.TransaccionesFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,19 +19,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Sebastian Rojas
  */
-@WebServlet(name = "buscarOfertaServlet", urlPatterns = {"/buscarOfertaServlet"})
-public class buscarOfertaServlet extends HttpServlet {
+@WebServlet(name = "historialTransaccionesServlet", urlPatterns = {"/historialTransaccionesServlet"})
+public class historialTransaccionesServlet extends HttpServlet {
 
   @EJB
-  private OfertasFacade ofertasFacade;
-  List<Ofertas> ofertasLista;
-  ofertasModelo ofertamodelo;
-  String grilla = "";
+  private TransaccionesFacade transaccionesFacade;
+  List<Transacciones> listaTransacciones;
+  boolean bandera = true;
+  String error = "";
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,20 +46,22 @@ public class buscarOfertaServlet extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = response.getWriter()) {
-     for (Ofertas oferta : ofertasLista) {
-      grilla += "<div class=\"col-sm-4 col-lg-4 col-md-4\">\n"
-              + "                        <div class=\"thumbnail\">\n"
-              + "                            <div class=\"caption\">\n"
-              + "                                <h4 class=\"pull-right\">" + oferta.getValor() + "</h4>\n"
-              + "                                <h4><a href=\"#\">" + oferta.getDescripcion() + "</a>\n"
-              + "                                </h4>\n"
-              + "                                <p><input type=\"radio\" name=\"oferta\" value=\"" + oferta.getId() + "\">Comprar</p>\n"
-              + "                            </div>\n"
-              + "                        </div>\n"
-              + "                    </div>";
-    }
-      response.getWriter().write(grilla);
+    try {
+      if (bandera) {
+        HttpSession session = request.getSession();
+        if (session != null) {
+          session.setAttribute("listaTransacciones", listaTransacciones);
+          response.sendRedirect("vistas/listaTransacciones.jsp");
+        }
+      } else {
+        HttpSession session = request.getSession();
+        if (session != null) {
+          session.setAttribute("error", error);
+          response.sendRedirect("vistas/listaTransacciones.jsp");
+        }
+      }
+    } finally {
+      out.close();
     }
   }
 
@@ -87,8 +91,17 @@ public class buscarOfertaServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String descripcion = request.getParameter("descripcion");
-    ofertasLista = ofertasFacade.getOfertasPorDescripcion(descripcion);
+    SimpleDateFormat formatoTexto = new SimpleDateFormat("yyyy-MM-dd");
+    try {
+      int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+      Date fechaInicial = formatoTexto.parse(request.getParameter("fechaInicial"));
+      Date fechaFinal = formatoTexto.parse(request.getParameter("fechaFinal"));
+      listaTransacciones = transaccionesFacade.listaTransaccionesPorRango(idUsuario, fechaInicial, fechaFinal);
+    } catch (Exception e) {
+      error += "Error en la fecha...";
+      bandera = false;
+    }
+
     processRequest(request, response);
   }
 

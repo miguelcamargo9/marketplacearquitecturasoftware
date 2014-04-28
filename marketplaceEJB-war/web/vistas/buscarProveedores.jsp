@@ -1,18 +1,27 @@
 <%-- 
-    Document   : buscarProveedores
-    Created on : 24/04/2014, 10:56:02 AM
-    Author     : Lina Paola
+    Document   : promociones
+    Created on : 20/04/2014, 11:55:26 PM
+    Author     : Sebastian Rojas
 --%>
+<%@page import="com.marketPlace.modelo.ofertasModelo"%>
+<%
+  String grillaCompras = "";
+  String idUsuario = "";
+  ofertasModelo model = new ofertasModelo();
+  model.setListaInicialOfertas();
+  grillaCompras = model.crearGrillaOfertas();
+  String exito = "";
+  String error = "";
+  exito = (String) session.getAttribute("exito");
+  error = (String) session.getAttribute("error");
+  idUsuario = (String) session.getAttribute("idUsuario");
+  exito = exito == null ? "" : exito;
+  error = error == null ? "" : error;
+  idUsuario = idUsuario == null ? "0" : idUsuario;
+
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-  String mensaje = "";
-  mensaje = (String) session.getAttribute("mensaje");
-  mensaje = mensaje == null ? "" : mensaje;
-  String error = "";
-  error = (String) session.getAttribute("error");
-  error = error == null ? "" : error;
-%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,53 +29,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../librerias/bootstrap-3.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="../librerias/bootstrap-3.1.1/dist/js/bootstrap.min.js"></script>
-    <title>Formulario de Consulta</title>
+    <title>MarketPlace</title>
   </head>
   <body>
-    <!--<div class="container-fluid">-->   
-    <div class="col-sm-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            Consultar Todos los Proveedores
-          </h3>
-        </div>
-        <div class="panel-body">
-          <form action="../busquedaProveedorServlet" method="post" class="form-horizontal" role="form">
-            <div class="form-group">
-            <center>
-              <input type="submit" class="btn btn-lg btn-info" value="Ver">
-            </center>
-            </div>            
-          </form>
-        </div>
-      </div>
-      <% if (!mensaje.equals("")) {
-      %>
-      <div class="alert alert-success">
-        <strong>
-          <%=mensaje%>
-        </strong>
-      </div>
-      <%
-        }
-        if (!error.equals("")) {
-      %>
-      <div class="alert alert-danger">
-        <strong>
-          <%=error%>
-        </strong>
-      </div>
-      <%
-        }
-        session.removeAttribute("error");
-        session.removeAttribute("mensaje");
-      %>
-    </div>
-    <!--      <div class="footer">
-            desarrollado por:
-            Lina Paola Torres
-          </div>-->
-    <!--</div>-->
+    <form class="form-horizontal" action="../busquedaProveedorServlet" method="post">
+      <fieldset>  
+        <legend>Buscar Proveedores</legend>
+        <table class="table table-hover">
+          <tr>
+            <td width="10%">Buscar: </td>
+            <td width="90%">
+              <input type="text" class="form-control" name="nombre" placeholder="nombre...">
+            </td>
+          </tr>
+        </table><br>
+        <input type="submit" value="Buscar" class="btn btn-primary">
+      </fieldset>
+    </form>
   </body>
 </html>
