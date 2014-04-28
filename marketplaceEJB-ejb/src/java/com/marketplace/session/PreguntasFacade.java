@@ -35,7 +35,7 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
   }
 
   public void buscarPreguntasSinResponder(boolean estado, Integer idProveedor) {
-    Usuarios proveedor = null;
+    Usuarios proveedor = new Usuarios();
     proveedor = usuariosFacade.getBuscarIdUser(idProveedor);
     Query query = getEntityManager().createNamedQuery("Preguntas.findByEstadoProveedor");
     query.setParameter("estado", estado);
