@@ -32,19 +32,25 @@
     <script type="text/javascript" src="librerias/bootstrap-3.1.1/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       function f_buscarOferta() {
+        var descripcion = $("#descripcion").val();
         $.ajax({
           url: 'buscarOfertaServlet',
           type: "POST",
           dataType: "html",
-          data: {descripcion:"algo"},
+          data: {descripcion:descripcion},
           success: function(data) {
             cambiarOfertas(data);
           }
         });
       }
       function cambiarOfertas(datos) {
-        
-
+        var contenedor = $("#contenedor");
+        if(datos != "") {
+          contenedor.empty();
+          contenedor.html(datos);
+        }else {
+          alert("no se encontro la oferta por favor verifique");
+        }
       }
     </script>
     <title>MarketPlace</title>

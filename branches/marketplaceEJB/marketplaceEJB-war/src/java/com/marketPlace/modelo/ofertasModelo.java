@@ -29,16 +29,16 @@ public class ofertasModelo {
   public String crearGrillaOfertas() {
     String grilla = "";
     for (Ofertas oferta : listaOfertas) {
-      grilla +="<div class=\"col-sm-4 col-lg-4 col-md-4\">\n" +
-"                        <div class=\"thumbnail\">\n" +
-"                            <div class=\"caption\">\n" +
-"                                <h4 class=\"pull-right\">"+oferta.getValor()+"</h4>\n" +
-"                                <h4><a href=\"#\">"+oferta.getDescripcion()+"</a>\n" +
-"                                </h4>\n" +
-"                                <p><input type=\"radio\" name=\"oferta\" value=\""+oferta.getId()+"\">Comprar</p>\n" +
-"                            </div>\n" +
-"                        </div>\n" +
-"                    </div>";
+      grilla += "<div class=\"col-sm-4 col-lg-4 col-md-4\">\n"
+              + "                        <div class=\"thumbnail\">\n"
+              + "                            <div class=\"caption\">\n"
+              + "                                <h4 class=\"pull-right\">" + oferta.getValor() + "</h4>\n"
+              + "                                <h4><a href=\"#\">" + oferta.getDescripcion() + "</a>\n"
+              + "                                </h4>\n"
+              + "                                <p><input type=\"radio\" name=\"oferta\" value=\"" + oferta.getId() + "\">Comprar</p>\n"
+              + "                            </div>\n"
+              + "                        </div>\n"
+              + "                    </div>";
     }
     return grilla;
   }
@@ -46,12 +46,6 @@ public class ofertasModelo {
   public void setListaInicialOfertas() {
     listaOfertas = ofertasFacade.getListadeOfertas();
   }
-
-  public void setListaOfertaPorDescripcion(String descripcion) {
-    listaOfertas = ofertasFacade.getOfertasPorDescripcion(descripcion);
-  }
-  
-  
 
   private OfertasFacade lookupOfertasFacadeBean() {
     try {
