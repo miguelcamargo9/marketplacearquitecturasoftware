@@ -55,8 +55,10 @@ public class TransaccionesFacade extends AbstractFacade<Transacciones> {
   }
 
   public List<Transacciones> listaTransaccionesPorRango(int idUsuario, Date fechaI, Date fechaF) {
+    Usuarios usuario = new Usuarios();
+    usuario = usuariosFacade.getBuscarIdUser(idUsuario);
     Query query = getEntityManager().createNamedQuery("Transacciones.findByRangoId");
-    query.setParameter("idUsuario", idUsuario);
+    query.setParameter("idUsuario", usuario);
     query.setParameter("inicial", fechaI);
     query.setParameter("final", fechaF);
     List listaTransacciones = (List<Transacciones>) query.getResultList();
