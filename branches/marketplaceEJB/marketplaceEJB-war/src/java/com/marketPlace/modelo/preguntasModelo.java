@@ -23,8 +23,8 @@ public class preguntasModelo {
   String listaSeleccionPreguntasEstado;
   List<Preguntas> listaPreguntas;
 
-  public void crearListaUsuariosEstado(boolean estado){
-    preguntasFacade.buscarPreguntasSinResponder(estado);
+  public void crearListaPreguntasEstado(boolean estado, int idProveedor){
+    preguntasFacade.buscarPreguntasSinResponder(estado, idProveedor);
     listaPreguntas = preguntasFacade.getListaPreguntas();
     listaSeleccionPreguntasEstado = "<select name=\"idPregunta\">";
     listaSeleccionPreguntasEstado += "<option value=\"\">[seleccione]</option>";

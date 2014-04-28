@@ -11,14 +11,10 @@
   String perfil = "";
   perfil = (String) session.getAttribute("perfil");
   perfil = perfil == null ? "" : perfil;
-  String idUsuario = "";
-  idUsuario = (String) session.getAttribute("idUsuario");
-  idUsuario = idUsuario == null ? "" : idUsuario;
-  int idUsr = Integer.parseInt(idUsuario);
   String listaPreguntas = "";
   preguntasModelo model = new preguntasModelo();
-  model.crearListaPreguntasEstado(true, idUsr);
-  //listaPreguntas = model.getListaSeleccionPreguntasEstado();
+  model.crearListaPreguntasEstado(true, (Integer) session.getAttribute("idUsuario"));
+  listaPreguntas = model.getListaSeleccionPreguntasEstado();
 %>
 <html>
   <head>
@@ -42,11 +38,15 @@
               Seleccione Preguntas<%=listaPreguntas%>
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="respuestasFAQ" placeholder="Respuesta"></textarea>
+              <textarea class="form-control" name="preguntasFAQ" placeholder="Cual es su pregunta?"></textarea>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="respuestasFAQ" placeholder="Respuesta" <%if(perfil.equals("1")) { %>readonly<%}%> ></textarea>
             </div>
             <center>
               <input type="submit" class="btn btn-lg btn-info" value="Continuar">
             </center>
+            <input type="hidden" name="idusuario" value="<%=session.getAttribute("id")%>" >
           </form>
         </div>
       </div>
