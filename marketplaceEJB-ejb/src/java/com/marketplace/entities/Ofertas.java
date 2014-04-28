@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
   @NamedQuery(name = "Ofertas.findByDescripcion", query = "SELECT o FROM Ofertas o WHERE o.descripcion = :descripcion"),
   @NamedQuery(name = "Ofertas.findByFechaInicial", query = "SELECT o FROM Ofertas o WHERE o.fechaInicial = :fechaInicial"),
   @NamedQuery(name = "Ofertas.findByFechaFinal", query = "SELECT o FROM Ofertas o WHERE o.fechaFinal = :fechaFinal"),
-  @NamedQuery(name = "Ofertas.findByValor", query = "SELECT o FROM Ofertas o WHERE o.valor = :valor")})
+  @NamedQuery(name = "Ofertas.findByValor", query = "SELECT o FROM Ofertas o WHERE o.valor = :valor"),
+  @NamedQuery(name = "Ofertas.findByFechaDescripcion", query = "SELECT o FROM Ofertas o WHERE o.fechaInicial <= :fecha AND o.fechaFinal >= :fecha AND o.descripcion = :descripcion"),
+  @NamedQuery(name = "Ofertas.findByFecha", query = "SELECT o FROM Ofertas o WHERE o.fechaInicial <= :fecha AND o.fechaFinal >= :fecha")})
 public class Ofertas implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id

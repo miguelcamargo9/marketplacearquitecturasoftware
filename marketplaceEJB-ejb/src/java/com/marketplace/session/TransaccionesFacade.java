@@ -6,7 +6,11 @@
 
 package com.marketplace.session;
 
+import com.marketplace.entities.Ofertas;
 import com.marketplace.entities.Transacciones;
+import com.marketplace.entities.Usuarios;
+import java.util.Date;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +21,14 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class TransaccionesFacade extends AbstractFacade<Transacciones> {
+  @EJB
+  private UsuariosFacade usuariosFacade;
+  @EJB
+  private OfertasFacade ofertasFacade;
+  
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
+  
 
   @Override
   protected EntityManager getEntityManager() {
@@ -27,6 +37,19 @@ public class TransaccionesFacade extends AbstractFacade<Transacciones> {
 
   public TransaccionesFacade() {
     super(Transacciones.class);
+  }
+  
+  public void guardarTransaccionOferta(int idPaquete, int idUsuario) {
+    Ofertas oferta = new Ofertas();
+    Usuarios usuario = new Usuarios();
+    java.util.Date fecha = new Date();
+    Transacciones transaccion = new Transacciones();
+    oferta = ofertasFacade.getOfertaPorId(idPaquete);
+    usuario = usuariosFacade.getBuscarIdUser(idUsuario);
+    transaccion.setFechaTransaccion(fecha);
+    transaccion.setIdOferta(oferta);
+    transaccion.setIdUsuario(usuario);
+    em.persist(transaccion);
   }
   
 }
