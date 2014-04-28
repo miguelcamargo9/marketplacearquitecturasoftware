@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.marketplace.session;
 
 import com.marketplace.entities.Preguntas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,8 +18,11 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PreguntasFacade extends AbstractFacade<Preguntas> {
+
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
+  
+  private List<Preguntas> listaPreguntas;
 
   @Override
   protected EntityManager getEntityManager() {
@@ -28,5 +32,14 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
   public PreguntasFacade() {
     super(Preguntas.class);
   }
+
+  public void buscarPreguntasSinResponder(boolean estado) {
+    Query query = getEntityManager().createNamedQuery("Preguntas.findByEstado");
+    query.setParameter("estado", estado);
+    listaPreguntas = query.getResultList();
+  }
   
+  public List<Preguntas> getListaPreguntas() {
+    return listaPreguntas;
+  }
 }
