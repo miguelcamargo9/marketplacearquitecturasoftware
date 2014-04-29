@@ -8,6 +8,7 @@ package com.marketplace.session;
 import com.marketplace.entities.Perfiles;
 import com.marketplace.entities.Usuarios;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,11 +20,14 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsuariosFacade extends AbstractFacade<Usuarios> {
+  @EJB
+  private PerfilesFacade perfilesFacade;
 
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
-  PerfilesFacade perfilesfacade;
+  
   private List<Usuarios> listaUsuarios;
+  private Usuarios usuario = new Usuarios();
 
   @Override
   protected EntityManager getEntityManager() {
@@ -50,7 +54,6 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
   }
 
   public Usuarios getBuscarIdUser(int cedula) {
-    Usuarios usuario = null;
     Query query = getEntityManager().createNamedQuery("Usuarios.findById");
     query.setParameter("id", cedula);
     usuario = (Usuarios) query.getSingleResult();
@@ -66,13 +69,11 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
 
   public void getListarUsuarios(String descripcion) {
     Perfiles perfil = null;
-    perfil = perfilesfacade.getPerfilPorDescripcion(descripcion);
+    perfil = perfilesFacade.getPerfilPorDescripcion(descripcion);
     Query query = getEntityManager().createNamedQuery("Usuarios.findByIdPerfil");
     query.setParameter("idPerfil", perfil.getId());
     List usuariosListado = (List<Usuarios>) query.getResultList();
-    for (Object user : usuariosListado) {
-      usuariosListado.add(user);
-    }
+    listaUsuarios = usuariosListado;
   }
 
   public void buscarUsuariosconSolicitudes(boolean estado) {
