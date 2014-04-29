@@ -5,16 +5,26 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.marketPlace.modelo.preguntasModelo"%>
+<%@page import="com.marketPlace.modelo.usuarioModelo"%>
 <!DOCTYPE html>
 <%
   String perfil = "";
   perfil = (String) session.getAttribute("perfil");
   perfil = perfil == null ? "" : perfil;
-  String listaPreguntas = "";
-  preguntasModelo model = new preguntasModelo();
-  model.crearListaPreguntasEstado(true, (Integer) session.getAttribute("idUsuario"));
-  listaPreguntas = model.getListaSeleccionPreguntasEstado();
+  String idUsuario = "";
+  idUsuario = (String) session.getAttribute("idUsuario");
+  idUsuario = idUsuario == null ? "" : idUsuario;
+  int idUsr = Integer.parseInt(idUsuario);
+  String listaProveedores = "";
+  usuarioModelo model = new usuarioModelo();
+  model.crearListaUsuarios("Proveedores");
+  listaProveedores = model.getListaSeleccionUsuario();
+  String mensaje = "";
+  mensaje = (String) session.getAttribute("mensaje");
+  mensaje = mensaje == null ? "" : mensaje;
+  String error = "";
+  error = (String) session.getAttribute("error");
+  error = error == null ? "" : error;
 %>
 <html>
   <head>
@@ -33,23 +43,41 @@
           </h3>
         </div>
         <div class="panel-body">
-          <form action="../proveedorServlet" method="post" class="form-horizontal" role="form">
+          <form action="../preguntarServlet" method="post" class="form-horizontal" role="form">
             <div class="form-group">
-              Seleccione Preguntas<%=listaPreguntas%>
+              Seleccione Proveedor<%=listaProveedores%>
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="preguntasFAQ" placeholder="Cual es su pregunta?"></textarea>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="respuestasFAQ" placeholder="Respuesta" <%if(perfil.equals("1")) { %>readonly<%}%> ></textarea>
+              <textarea class="form-control" name="preguntasFAQ" placeholder="Cual es su pregunta?" required></textarea>
             </div>
             <center>
               <input type="submit" class="btn btn-lg btn-info" value="Continuar">
             </center>
-            <input type="hidden" name="idusuario" value="<%=session.getAttribute("id")%>" >
+            <input type="hidden" name="idusuarioPre" value="<%=idUsuario%>" >
           </form>
         </div>
       </div>
+    <% if (!mensaje.equals("")) {
+    %>
+    <div class="alert alert-success">
+      <strong>
+        <%=mensaje%>
+      </strong>
+    </div>
+    <%
+      }
+      if (!error.equals("")) {
+    %>
+    <div class="alert alert-danger">
+      <strong>
+        <%=error%>
+      </strong>
+    </div>
+    <%
+      }
+      session.removeAttribute("error");
+      session.removeAttribute("mensaje");
+    %>
     </div>
   </body>
 </html>
