@@ -49,12 +49,10 @@ public class proveedorServlet extends HttpServlet {
       if (bandera) {
         HttpSession session = request.getSession();
         session.setAttribute("mensaje", ""+usuario.getPrimerNombre()+" Tu registro ha sido creado con Exito!");
-        session.setMaxInactiveInterval(1);
         response.sendRedirect("vistas/crearProveedores.jsp");
       } else {
         HttpSession session = request.getSession();
         session.setAttribute("error", error);
-        session.setMaxInactiveInterval(1);
         response.sendRedirect("vistas/crearProveedores.jsp");
       }
     } finally {      
@@ -101,7 +99,7 @@ public class proveedorServlet extends HttpServlet {
     if (usuario == null && passwordMd5.equals(passwordMd5C)) {
       bandera = true;
       usuario = new Usuarios(Integer.parseInt(nitProveedor),nickname,passwordMd5,true);
-      usuario.setIdPerfil(2);
+      usuario.setIdPerfil(3);
       usuario.setNombreComercial(razonSocial);
       usuario.setCorreo(correo);
       usuariosFacade.setUsuario(this.usuario);

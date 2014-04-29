@@ -26,7 +26,7 @@ public class preguntasModelo {
   public void crearListaPreguntasEstado(boolean estado, int idProveedor){
     preguntasFacade.buscarPreguntasSinResponder(estado, idProveedor);
     listaPreguntas = preguntasFacade.getListaPreguntas();
-    listaSeleccionPreguntasEstado = "<select name=\"idPregunta\">";
+    listaSeleccionPreguntasEstado = "<select name=\"idPregunta\" required >";
     listaSeleccionPreguntasEstado += "<option value=\"\">[seleccione]</option>";
     for (Preguntas p : listaPreguntas) {
       listaSeleccionPreguntasEstado += "<option value=\"" + p.getId() + "\">" + p.getPregunta() +  "</option>";

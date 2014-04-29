@@ -25,15 +25,15 @@ public class usuarioModelo {
   String listaSeleccionUsuarioEstado;
   List<Usuarios> listaUsuarios;
 
-  public void crearListaUsuarios() {
+  public void crearListaUsuarios(String tipoUser) {
 //    userdao.getListarUsuarios("Usuario");
-    usuariosFacade.getListarUsuarios("Usuario");
+    usuariosFacade.getListarUsuarios(tipoUser);
     
     listaUsuarios = usuariosFacade.getListaUsuarios();
-    listaSeleccionUsuario = "<select name=\"idUsuario\">";
+    listaSeleccionUsuario = "<select name=\"idUsuario\" required>";
     listaSeleccionUsuario += "<option value=\"\">[seleccione]</option>";
     for (Usuarios u : listaUsuarios) {
-      listaSeleccionUsuario += "<option value=\"" + u.getId() + "\">" + u.getPrimerNombre() + " " + u.getPrimerApellido() + "</option>";
+      listaSeleccionUsuario += "<option value=\"" + u.getId() + "\">" + u.getNombreComercial()+ "</option>";
     }
     listaSeleccionUsuario += "</select>";
   }
