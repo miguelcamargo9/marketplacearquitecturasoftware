@@ -8,6 +8,7 @@ package com.marketplace.session;
 import com.marketplace.entities.Preguntas;
 import com.marketplace.entities.Usuarios;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,8 +23,10 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
 
   @PersistenceContext(unitName = "marketplaceEJB-ejbPU")
   private EntityManager em;
-  
+  private Usuarios proveedor = new Usuarios();
   private List<Preguntas> listaPreguntas;
+  private Preguntas pregunta = new Preguntas();
+  @EJB
   UsuariosFacade usuariosFacade;
   @Override
   protected EntityManager getEntityManager() {
@@ -34,8 +37,7 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
     super(Preguntas.class);
   }
 
-  public void buscarPreguntasSinResponder(boolean estado, Integer idProveedor) {
-    Usuarios proveedor = new Usuarios();
+  public void buscarPreguntasSinResponder(boolean estado, Integer idProveedor) { 
     proveedor = usuariosFacade.getBuscarIdUser(idProveedor);
     Query query = getEntityManager().createNamedQuery("Preguntas.findByEstadoProveedor");
     query.setParameter("estado", estado);
@@ -46,4 +48,19 @@ public class PreguntasFacade extends AbstractFacade<Preguntas> {
   public List<Preguntas> getListaPreguntas() {
     return listaPreguntas;
   }
+  
+  public Preguntas getBuscarIdPregunta(int idPregunta) {
+    Query query = getEntityManager().createNamedQuery("Preguntas.findById");
+    query.setParameter("id", idPregunta);
+    pregunta = (Preguntas) query.getSingleResult();
+    return pregunta;
+  }
+  
+  public void editarPregunta(Preguntas pregunta){
+    this.edit(pregunta);
+  } 
+  public void guardarPregunta(Preguntas pregunta){
+    this.create(pregunta);
+  } 
+  
 }
