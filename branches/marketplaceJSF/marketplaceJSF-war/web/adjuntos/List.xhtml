@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+  <h:outputStylesheet library="css" name="estiloGeneral.css"></h:outputStylesheet>
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
-      <h:outputText value="#{bundle.ListAdjuntosTitle}"></h:outputText>
+      <h:outputText value="#{bundle.AdjuntosTitle}"></h:outputText>
     </ui:define>
     <ui:define name="body">
       <h:form styleClass="jsfcrud_list_form">
@@ -40,15 +41,15 @@
               <h:outputText value=" "/>
               <h:commandLink action="#{adjuntosController.prepareEdit}" value="#{bundle.ListAdjuntosEditLink}"/>
               <h:outputText value=" "/>
-              <h:commandLink action="#{adjuntosController.destroy}" value="#{bundle.ListAdjuntosDestroyLink}"/>
+              <h:commandLink action="#{adjuntosController.destroy}" value="#{bundle.ListAdjuntosDestroyLink}" />
             </h:column>
           </h:dataTable>
         </h:panelGroup>
         <br />
-        <h:commandLink action="#{adjuntosController.prepareCreate}" value="#{bundle.ListAdjuntosCreateLink}"/>
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{adjuntosController.prepareCreate}" value="#{bundle.ListAdjuntosCreateLink}"/>
         <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ListAdjuntosIndexLink}"/>
+        <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>
       </h:form>
     </ui:define>
   </ui:composition>
