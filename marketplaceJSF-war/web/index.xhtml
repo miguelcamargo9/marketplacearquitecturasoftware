@@ -1,41 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
   <h:head>
-    <title>Facelet Title</title>
-    <h:outputStylesheet name="css/jsfcrud.css"/>
+    <title>MarketPlace</title>
   </h:head>
-  <h:body>
-    Hello from Facelets
-    <br />
-    <h:link outcome="/adjuntos/List" value="Show All Adjuntos Items"/>
-    <br />
-    <h:link outcome="/archivos/List" value="Show All Archivos Items"/>
-    <br />
-    <h:link outcome="/archivosadjuntos/List" value="Show All Archivosadjuntos Items"/>
-    <br />
-    <h:link outcome="/categorias/List" value="Show All Categorias Items"/>
-    <br />
-    <h:link outcome="/menus/List" value="Show All Menus Items"/>
-    <br />
-    <h:link outcome="/ofertas/List" value="Show All Ofertas Items"/>
-    <br />
-    <h:link outcome="/paquetes/List" value="Show All Paquetes Items"/>
-    <br />
-    <h:link outcome="/paquetesdeservicios/List" value="Show All Paquetesdeservicios Items"/>
-    <br />
-    <h:link outcome="/perfiles/List" value="Show All Perfiles Items"/>
-    <br />
-    <h:link outcome="/permisos/List" value="Show All Permisos Items"/>
-    <br />
-    <h:link outcome="/preguntas/List" value="Show All Preguntas Items"/>
-    <br />
-    <h:link outcome="/servicios/List" value="Show All Servicios Items"/>
-    <br />
-    <h:link outcome="/transacciones/List" value="Show All Transacciones Items"/>
-    <br />
-    <h:link outcome="/usuarios/List" value="Show All Usuarios Items"/>
+  <h:body style="padding-top: 50px; padding-bottom: 20px;">
+    <b:panel>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4>Menu Principal</h4>
+        </div>
+        <div class="panel-body">
+
+          <br />
+          <h:link outcome="/adjuntos/List" value="Opciones de Adjuntos "/>
+          <br />
+          <h:link outcome="/archivos/List" value="Opciones de Archivos "/>
+          <br />
+          <h:link outcome="/archivosadjuntos/List" value="Opciones de Archivosadjuntos "/>
+          <br />
+          <h:link outcome="/categorias/List" value="Opciones de Categorias "/>
+          <br />
+          <h:link outcome="/menus/List" value="Opciones de Menus "/>
+          <br />
+          <h:link outcome="/ofertas/List" value="Opciones de Ofertas "/>
+          <br />
+          <h:link outcome="/paquetes/List" value="Opciones de Paquetes "/>
+          <br />
+          <h:link outcome="/paquetesdeservicios/List" value="Opciones de Paquetesdeservicios "/>
+          <br />
+          <h:link outcome="/perfiles/List" value="Opciones de Perfiles "/>
+          <br />
+          <h:link outcome="/permisos/List" value="Opciones de Permisos "/>
+          <br />
+          <h:link outcome="/preguntas/List" value="Opciones de Preguntas "/>
+          <br />
+          <h:link outcome="/servicios/List" value="Opciones de Servicios "/>
+          <br />
+          <h:link outcome="/transacciones/List" value="Opciones de Transacciones "/>
+          <br />
+          <h:link outcome="/usuarios/List" value="Opciones de Usuarios "/>
+        </div>          
+      </div>
+      <div class="panel-footer">
+        <section class = "about">
+          <p class = "about-author" >
+            &copy;2013&ndash;2014 <a href = "mailto:azulsebas123@gmail.com"> Sebastian Rojas </a> <br></br>
+            &copy;2013&ndash;2014 <a href = "mailto:miguelcamargo9@gmail.com"> Miguel Camargo </a> 
+          </p>
+        </section>
+      </div>
+    </b:panel>
+
   </h:body>
 
 
