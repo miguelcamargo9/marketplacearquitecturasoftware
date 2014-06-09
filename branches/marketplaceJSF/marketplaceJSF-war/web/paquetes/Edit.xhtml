@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.EditPaquetesTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.EditPaquetesLabel_id}" for="id" />
+          <h:inputText id="id" value="#{paquetesController.selected.id}" title="#{bundle.EditPaquetesTitle_id}" required="true" requiredMessage="#{bundle.EditPaquetesRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.EditPaquetesLabel_descripcion}" for="descripcion" />
+          <h:inputText id="descripcion" value="#{paquetesController.selected.descripcion}" title="#{bundle.EditPaquetesTitle_descripcion}" required="true" requiredMessage="#{bundle.EditPaquetesRequiredMessage_descripcion}"/>
+          <h:outputLabel value="#{bundle.EditPaquetesLabel_valor}" for="valor" />
+          <h:inputText id="valor" value="#{paquetesController.selected.valor}" title="#{bundle.EditPaquetesTitle_valor}" required="true" requiredMessage="#{bundle.EditPaquetesRequiredMessage_valor}"/>
+          <h:outputLabel value="#{bundle.EditPaquetesLabel_estado}" for="estado" />
+          <h:inputText id="estado" value="#{paquetesController.selected.estado}" title="#{bundle.EditPaquetesTitle_estado}" required="true" requiredMessage="#{bundle.EditPaquetesRequiredMessage_estado}"/>
+          <h:outputLabel value="#{bundle.EditPaquetesLabel_idProveedor}" for="idProveedor" />
+          <h:selectOneMenu id="idProveedor" value="#{paquetesController.selected.idProveedor}" title="#{bundle.EditPaquetesTitle_idProveedor}" required="true" requiredMessage="#{bundle.EditPaquetesRequiredMessage_idProveedor}">
+            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <h:commandLink action="#{paquetesController.update}" value="#{bundle.EditPaquetesSaveLink}"/>
+        <br />
+        <br />
+        <h:link outcome="View" value="#{bundle.EditPaquetesViewLink}"/>
+        <br />
+        <h:commandLink action="#{paquetesController.prepareList}" value="#{bundle.EditPaquetesShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.EditPaquetesIndexLink}" />
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

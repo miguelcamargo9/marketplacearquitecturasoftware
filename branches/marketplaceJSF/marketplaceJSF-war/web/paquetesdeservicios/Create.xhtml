@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.CreatePaquetesdeserviciosTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.CreatePaquetesdeserviciosLabel_id}" for="id" />
+          <h:inputText id="id" value="#{paquetesdeserviciosController.selected.id}" title="#{bundle.CreatePaquetesdeserviciosTitle_id}" required="true" requiredMessage="#{bundle.CreatePaquetesdeserviciosRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.CreatePaquetesdeserviciosLabel_estado}" for="estado" />
+          <h:inputText id="estado" value="#{paquetesdeserviciosController.selected.estado}" title="#{bundle.CreatePaquetesdeserviciosTitle_estado}" required="true" requiredMessage="#{bundle.CreatePaquetesdeserviciosRequiredMessage_estado}"/>
+          <h:outputLabel value="#{bundle.CreatePaquetesdeserviciosLabel_idServicio}" for="idServicio" />
+          <h:selectOneMenu id="idServicio" value="#{paquetesdeserviciosController.selected.idServicio}" title="#{bundle.CreatePaquetesdeserviciosTitle_idServicio}" required="true" requiredMessage="#{bundle.CreatePaquetesdeserviciosRequiredMessage_idServicio}">
+            <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+          <h:outputLabel value="#{bundle.CreatePaquetesdeserviciosLabel_idPaquete}" for="idPaquete" />
+          <h:selectOneMenu id="idPaquete" value="#{paquetesdeserviciosController.selected.idPaquete}" title="#{bundle.CreatePaquetesdeserviciosTitle_idPaquete}" required="true" requiredMessage="#{bundle.CreatePaquetesdeserviciosRequiredMessage_idPaquete}">
+            <f:selectItems value="#{paquetesController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{paquetesdeserviciosController.create}" value="#{bundle.CreatePaquetesdeserviciosSaveLink}" />
+        <br />
+        <br />
+        <h:commandLink action="#{paquetesdeserviciosController.prepareList}" value="#{bundle.CreatePaquetesdeserviciosShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreatePaquetesdeserviciosIndexLink}"/>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

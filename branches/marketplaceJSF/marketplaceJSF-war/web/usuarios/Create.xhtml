@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.CreateUsuariosTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_id}" for="id" />
+          <h:inputText id="id" value="#{usuariosController.selected.id}" title="#{bundle.CreateUsuariosTitle_id}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_primerNombre}" for="primerNombre" />
+          <h:inputText id="primerNombre" value="#{usuariosController.selected.primerNombre}" title="#{bundle.CreateUsuariosTitle_primerNombre}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_segundoNombre}" for="segundoNombre" />
+          <h:inputText id="segundoNombre" value="#{usuariosController.selected.segundoNombre}" title="#{bundle.CreateUsuariosTitle_segundoNombre}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_primerApellido}" for="primerApellido" />
+          <h:inputText id="primerApellido" value="#{usuariosController.selected.primerApellido}" title="#{bundle.CreateUsuariosTitle_primerApellido}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_segundoApellido}" for="segundoApellido" />
+          <h:inputText id="segundoApellido" value="#{usuariosController.selected.segundoApellido}" title="#{bundle.CreateUsuariosTitle_segundoApellido}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_nombreComercial}" for="nombreComercial" />
+          <h:inputText id="nombreComercial" value="#{usuariosController.selected.nombreComercial}" title="#{bundle.CreateUsuariosTitle_nombreComercial}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_nickname}" for="nickname" />
+          <h:inputText id="nickname" value="#{usuariosController.selected.nickname}" title="#{bundle.CreateUsuariosTitle_nickname}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_nickname}"/>
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_contrasena}" for="contrasena" />
+          <h:inputText id="contrasena" value="#{usuariosController.selected.contrasena}" title="#{bundle.CreateUsuariosTitle_contrasena}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_contrasena}"/>
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_correo}" for="correo" />
+          <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.CreateUsuariosTitle_correo}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_idPerfil}" for="idPerfil" />
+          <h:inputText id="idPerfil" value="#{usuariosController.selected.idPerfil}" title="#{bundle.CreateUsuariosTitle_idPerfil}" />
+          <h:outputLabel value="#{bundle.CreateUsuariosLabel_estado}" for="estado" />
+          <h:inputText id="estado" value="#{usuariosController.selected.estado}" title="#{bundle.CreateUsuariosTitle_estado}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_estado}"/>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{usuariosController.create}" value="#{bundle.CreateUsuariosSaveLink}" />
+        <br />
+        <br />
+        <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.CreateUsuariosShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreateUsuariosIndexLink}"/>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>
