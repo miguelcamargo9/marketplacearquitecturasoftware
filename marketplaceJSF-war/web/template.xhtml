@@ -2,20 +2,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
   <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><ui:insert name="title">Default Title</ui:insert></title>
-<h:outputStylesheet name="css/jsfcrud.css"/>
+    <h:outputStylesheet name="css/jsfcrud.css"/>
   </h:head>
-
   <h:body>
-    <h1>
-      <ui:insert name="title">Default Title</ui:insert>
-    </h1>
-    <p>
-      <ui:insert name="body">Default Body</ui:insert>
-    </p>
+    <b:panel>
+      <div class="panel panel-primary">
+
+        <div class="panel-heading">
+          <h4>
+            <ui:insert name="title">Default Title</ui:insert>
+          </h4>
+        </div>
+        <div class="panel-body">
+
+          <p>
+            <ui:insert name="body">Default Body</ui:insert>
+          </p>
+        </div>
+        <div class="panel-footer">
+          <section class = "about">
+            <p class = "about-author" >
+              &copy;2013&ndash;2014 <a href = "mailto:azulsebas123@gmail.com"> Sebastian Rojas </a> <br></br>
+              &copy;2013&ndash;2014 <a href = "mailto:miguelcamargo9@gmail.com"> Miguel Camargo </a> 
+            </p>
+          </section>
+        </div>
+      </div>
+    </b:panel>
   </h:body>
 
 </html>
