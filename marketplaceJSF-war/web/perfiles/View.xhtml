@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -23,18 +23,19 @@
           <h:outputText value="#{perfilesController.selected.estado}" title="#{bundle.ViewPerfilesTitle_estado}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{perfilesController.destroyAndView}" value="#{bundle.ViewPerfilesDestroyLink}"/>
+        <h:commandLink class="btn btn-danger btn-sm" action="#{perfilesController.destroyAndView}" value="#{bundle.ViewPerfilesDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewPerfilesEditLink}"/>
-        <br />
-        <h:commandLink action="#{perfilesController.prepareCreate}" value="#{bundle.ViewPerfilesCreateLink}" />
-        <br />
-        <h:commandLink action="#{perfilesController.prepareList}" value="#{bundle.ViewPerfilesShowAllLink}"/>
+        <h:link class="btn btn-success btn-sm" outcome="Edit" value="#{bundle.ViewPerfilesEditLink}"/>
+        <!--<br />-->
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{perfilesController.prepareCreate}" value="#{bundle.ViewPerfilesCreateLink}" />
+        <!--<br />-->
+        <h:commandLink class="btn btn-default btn-sm" action="#{perfilesController.prepareList}" value="#{bundle.ViewPerfilesShowAllLink}"/>
         <br />
         <br />
         <h:link outcome="/index" value="#{bundle.ViewPerfilesIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.ViewPerfilesIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -51,10 +52,11 @@
           </h:dataTable>
         </h:panelGroup>
         <br />
-        <h:commandLink action="#{permisosController.prepareCreate}" value="#{bundle.ListPermisosCreateLink}"/>
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{permisosController.prepareCreate}" value="#{bundle.ListPermisosCreateLink}"/>
         <br />
         <br />
-        <h:link outcome="/index" value="#{bundle.ListPermisosIndexLink}"/>
+        <b:button outcome="/index" value="#{bundle.ListPermisosIndexLink}" icon="bookmark"> 
+        </b:button>
       </h:form>
     </ui:define>
   </ui:composition>
