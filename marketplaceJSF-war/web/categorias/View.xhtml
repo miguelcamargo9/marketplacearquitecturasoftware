@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -21,18 +22,17 @@
           <h:outputText value="#{categoriasController.selected.descripcion}" title="#{bundle.ViewCategoriasTitle_descripcion}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{categoriasController.destroyAndView}" value="#{bundle.ViewCategoriasDestroyLink}"/>
+        <h:commandLink class="btn btn-danger btn-sm" action="#{categoriasController.destroyAndView}" value="#{bundle.ViewCategoriasDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewCategoriasEditLink}"/>
+        <h:link class="btn btn-success btn-sm" outcome="Edit" value="#{bundle.ViewCategoriasEditLink}"/>
         <br />
-        <h:commandLink action="#{categoriasController.prepareCreate}" value="#{bundle.ViewCategoriasCreateLink}" />
+        <h:commandLink class="btn btn-default btn-sm" action="#{categoriasController.prepareCreate}" value="#{bundle.ViewCategoriasCreateLink}" />
         <br />
-        <h:commandLink action="#{categoriasController.prepareList}" value="#{bundle.ViewCategoriasShowAllLink}"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{categoriasController.prepareList}" value="#{bundle.ViewCategoriasShowAllLink}"/>
         <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ViewCategoriasIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>
       </h:form>
     </ui:define>
   </ui:composition>

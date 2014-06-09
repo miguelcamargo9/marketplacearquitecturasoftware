@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -35,13 +36,12 @@
           </h:selectOneMenu>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{ofertasController.create}" value="#{bundle.CreateOfertasSaveLink}" />
+        <h:commandLink class="btn btn-success btn-sm" action="#{ofertasController.create}" value="#{bundle.CreateOfertasSaveLink}" />
         <br />
+        <h:commandLink class="btn btn-default btn-sm" action="#{ofertasController.prepareList}" value="#{bundle.CreateOfertasShowAllLink}" immediate="true"/>
         <br />
-        <h:commandLink action="#{ofertasController.prepareList}" value="#{bundle.CreateOfertasShowAllLink}" immediate="true"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.CreateOfertasIndexLink}"/>
+        <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button> 
       </h:form>
     </ui:define>
   </ui:composition>

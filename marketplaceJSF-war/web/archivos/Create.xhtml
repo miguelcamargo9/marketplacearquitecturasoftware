@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -23,13 +24,12 @@
           <h:inputText id="ruta" value="#{archivosController.selected.ruta}" title="#{bundle.CreateArchivosTitle_ruta}" required="true" requiredMessage="#{bundle.CreateArchivosRequiredMessage_ruta}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{archivosController.create}" value="#{bundle.CreateArchivosSaveLink}" />
+        <h:commandLink class="btn btn-success btn-sm" action="#{archivosController.create}" value="#{bundle.CreateArchivosSaveLink}" />
         <br />
+        <h:commandLink class="btn btn-default btn-sm" action="#{archivosController.prepareList}" value="#{bundle.CreateArchivosShowAllLink}" immediate="true"/>
         <br />
-        <h:commandLink action="#{archivosController.prepareList}" value="#{bundle.CreateArchivosShowAllLink}" immediate="true"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.CreateArchivosIndexLink}"/>
+      <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

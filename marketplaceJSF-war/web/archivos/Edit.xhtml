@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -22,15 +23,14 @@
           <h:outputLabel value="#{bundle.EditArchivosLabel_ruta}" for="ruta" />
           <h:inputText id="ruta" value="#{archivosController.selected.ruta}" title="#{bundle.EditArchivosTitle_ruta}" required="true" requiredMessage="#{bundle.EditArchivosRequiredMessage_ruta}"/>
         </h:panelGrid>
-        <h:commandLink action="#{archivosController.update}" value="#{bundle.EditArchivosSaveLink}"/>
+        <h:commandLink class="btn btn-success btn-sm" action="#{archivosController.update}" value="#{bundle.EditArchivosSaveLink}"/>
         <br />
+        <h:link class="btn btn-default btn-sm" outcome="View" value="#{bundle.EditArchivosViewLink}"/>
         <br />
-        <h:link outcome="View" value="#{bundle.EditArchivosViewLink}"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{archivosController.prepareList}" value="#{bundle.EditArchivosShowAllLink}" immediate="true"/>
         <br />
-        <h:commandLink action="#{archivosController.prepareList}" value="#{bundle.EditArchivosShowAllLink}" immediate="true"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.EditArchivosIndexLink}" />
+       <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

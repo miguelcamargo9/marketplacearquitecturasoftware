@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -15,8 +16,6 @@
       </h:panelGroup>
       <h:form>
         <h:panelGrid columns="2">
-          <h:outputLabel value="#{bundle.CreateArchivosadjuntosLabel_id}" for="id" />
-          <h:inputText id="id" value="#{archivosadjuntosController.selected.id}" title="#{bundle.CreateArchivosadjuntosTitle_id}" required="true" requiredMessage="#{bundle.CreateArchivosadjuntosRequiredMessage_id}"/>
           <h:outputLabel value="#{bundle.CreateArchivosadjuntosLabel_idArchivo}" for="idArchivo" />
           <h:selectOneMenu id="idArchivo" value="#{archivosadjuntosController.selected.idArchivo}" title="#{bundle.CreateArchivosadjuntosTitle_idArchivo}" required="true" requiredMessage="#{bundle.CreateArchivosadjuntosRequiredMessage_idArchivo}">
             <f:selectItems value="#{archivosController.itemsAvailableSelectOne}"/>
@@ -27,13 +26,12 @@
           </h:selectOneMenu>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{archivosadjuntosController.create}" value="#{bundle.CreateArchivosadjuntosSaveLink}" />
+        <h:commandLink class="btn btn-success btn-sm" action="#{archivosadjuntosController.create}" value="#{bundle.CreateArchivosadjuntosSaveLink}" />
         <br />
+        <h:commandLink class="btn btn-default btn-sm" action="#{archivosadjuntosController.prepareList}" value="#{bundle.CreateArchivosadjuntosShowAllLink}" immediate="true"/>
         <br />
-        <h:commandLink action="#{archivosadjuntosController.prepareList}" value="#{bundle.CreateArchivosadjuntosShowAllLink}" immediate="true"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.CreateArchivosadjuntosIndexLink}"/>
+       <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>
