@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -29,18 +29,18 @@
           <h:outputText value="#{serviciosController.selected.idAdjunto}" title="#{bundle.ViewServiciosTitle_idAdjunto}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{serviciosController.destroyAndView}" value="#{bundle.ViewServiciosDestroyLink}"/>
+        <h:commandLink class="btn btn-danger btn-sm" action="#{serviciosController.destroyAndView}" value="#{bundle.ViewServiciosDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewServiciosEditLink}"/>
+        <h:link class="btn btn-success btn-sm" outcome="Edit" value="#{bundle.ViewServiciosEditLink}"/>
+        <!--<br />-->
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{serviciosController.prepareCreate}" value="#{bundle.ViewServiciosCreateLink}" />
+        <!--<br />-->
+        <h:commandLink class="btn btn-default btn-sm" action="#{serviciosController.prepareList}" value="#{bundle.ViewServiciosShowAllLink}"/>
         <br />
-        <h:commandLink action="#{serviciosController.prepareCreate}" value="#{bundle.ViewServiciosCreateLink}" />
         <br />
-        <h:commandLink action="#{serviciosController.prepareList}" value="#{bundle.ViewServiciosShowAllLink}"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ViewServiciosIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.ViewServiciosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

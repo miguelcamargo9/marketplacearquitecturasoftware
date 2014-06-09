@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -38,15 +39,16 @@
           <h:outputLabel value="#{bundle.EditUsuariosLabel_estado}" for="estado" />
           <h:inputText id="estado" value="#{usuariosController.selected.estado}" title="#{bundle.EditUsuariosTitle_estado}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_estado}"/>
         </h:panelGrid>
-        <h:commandLink action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}"/>
+        <h:commandLink class="btn btn-success btn-sm" action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}"/>
         <br />
         <br />
-        <h:link outcome="View" value="#{bundle.EditUsuariosViewLink}"/>
+        <h:link class="btn btn-default btn-sm" outcome="View" value="#{bundle.EditUsuariosViewLink}"/>
         <br />
-        <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.EditUsuariosShowAllLink}" immediate="true"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{usuariosController.prepareList}" value="#{bundle.EditUsuariosShowAllLink}" immediate="true"/>
         <br />
         <br />
-        <h:link outcome="/index" value="#{bundle.EditUsuariosIndexLink}" />
+        <b:button outcome="/index" value="#{bundle.CreateUsuariosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

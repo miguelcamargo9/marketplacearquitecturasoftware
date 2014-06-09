@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -23,13 +23,14 @@
           <h:inputText id="estado" value="#{perfilesController.selected.estado}" title="#{bundle.CreatePerfilesTitle_estado}" required="true" requiredMessage="#{bundle.CreatePerfilesRequiredMessage_estado}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{perfilesController.create}" value="#{bundle.CreatePerfilesSaveLink}" />
+        <h:commandLink class="btn btn-success btn-sm" action="#{perfilesController.create}" value="#{bundle.CreatePerfilesSaveLink}" />
         <br />
         <br />
-        <h:commandLink action="#{perfilesController.prepareList}" value="#{bundle.CreatePerfilesShowAllLink}" immediate="true"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{perfilesController.prepareList}" value="#{bundle.CreatePerfilesShowAllLink}" immediate="true"/>
         <br />
         <br />
-        <h:link outcome="/index" value="#{bundle.CreatePerfilesIndexLink}"/>
+        <b:button outcome="/index" value="#{bundle.CreatePerfilesIndexLink}" icon="bookmark"> 
+        </b:button> 
       </h:form>
     </ui:define>
   </ui:composition>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -25,18 +25,18 @@
           <h:outputText value="#{paquetesdeserviciosController.selected.idPaquete}" title="#{bundle.ViewPaquetesdeserviciosTitle_idPaquete}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{paquetesdeserviciosController.destroyAndView}" value="#{bundle.ViewPaquetesdeserviciosDestroyLink}"/>
+        <h:commandLink class="btn btn-danger btn-sm" action="#{paquetesdeserviciosController.destroyAndView}" value="#{bundle.ViewPaquetesdeserviciosDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewPaquetesdeserviciosEditLink}"/>
+        <h:link class="btn btn-success btn-sm" outcome="Edit" value="#{bundle.ViewPaquetesdeserviciosEditLink}"/>
+        <!--<br />-->
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{paquetesdeserviciosController.prepareCreate}" value="#{bundle.ViewPaquetesdeserviciosCreateLink}" />
+        <!--<br />-->
+        <h:commandLink class="btn btn-default btn-sm" action="#{paquetesdeserviciosController.prepareList}" value="#{bundle.ViewPaquetesdeserviciosShowAllLink}"/>
         <br />
-        <h:commandLink action="#{paquetesdeserviciosController.prepareCreate}" value="#{bundle.ViewPaquetesdeserviciosCreateLink}" />
         <br />
-        <h:commandLink action="#{paquetesdeserviciosController.prepareList}" value="#{bundle.ViewPaquetesdeserviciosShowAllLink}"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ViewPaquetesdeserviciosIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.ViewPaquetesdeserviciosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

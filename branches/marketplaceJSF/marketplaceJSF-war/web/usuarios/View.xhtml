@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -39,18 +40,20 @@
           <h:outputText value="#{usuariosController.selected.estado}" title="#{bundle.ViewUsuariosTitle_estado}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
+        <h:commandLink class="btn btn-danger btn-sm" action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
+        <h:link outcome="Edit" class="btn btn-success btn-sm" value="#{bundle.ViewUsuariosEditLink}"/>
+<!--        <br />
+        <br />-->
+        <h:commandLink class="btn btn-primary btn-sm active" action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
+<!--        <br />
+        <br />-->
+        <h:commandLink class="btn btn-default btn-sm" action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
         <br />
-        <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
         <br />
-        <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.CreateUsuariosIndexLink}" icon="bookmark"> 
+        </b:button>  
       </h:form>
     </ui:define>
   </ui:composition>

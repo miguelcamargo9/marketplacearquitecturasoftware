@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -32,15 +32,16 @@
             <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
           </h:selectOneMenu>
         </h:panelGrid>
-        <h:commandLink action="#{preguntasController.update}" value="#{bundle.EditPreguntasSaveLink}"/>
+        <h:commandLink class="btn btn-success btn-sm" action="#{preguntasController.update}" value="#{bundle.EditPreguntasSaveLink}"/>
         <br />
         <br />
-        <h:link outcome="View" value="#{bundle.EditPreguntasViewLink}"/>
+        <h:link class="btn btn-default btn-sm" outcome="View" value="#{bundle.EditPreguntasViewLink}"/>
         <br />
-        <h:commandLink action="#{preguntasController.prepareList}" value="#{bundle.EditPreguntasShowAllLink}" immediate="true"/>
+        <h:commandLink class="btn btn-default" action="#{preguntasController.prepareList}" value="#{bundle.EditPreguntasShowAllLink}" immediate="true"/>
         <br />
         <br />
-        <h:link outcome="/index" value="#{bundle.EditPreguntasIndexLink}" />
+        <b:button outcome="/index" value="#{bundle.EditPreguntasIndexLink}" icon="bookmark"> 
+        </b:button>
       </h:form>
     </ui:define>
   </ui:composition>
