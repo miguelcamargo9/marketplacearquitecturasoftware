@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.CreatePreguntasTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_id}" for="id" />
+          <h:inputText id="id" value="#{preguntasController.selected.id}" title="#{bundle.CreatePreguntasTitle_id}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_pregunta}" for="pregunta" />
+          <h:inputTextarea rows="4" cols="30" id="pregunta" value="#{preguntasController.selected.pregunta}" title="#{bundle.CreatePreguntasTitle_pregunta}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_pregunta}"/>
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_respuesta}" for="respuesta" />
+          <h:inputTextarea rows="4" cols="30" id="respuesta" value="#{preguntasController.selected.respuesta}" title="#{bundle.CreatePreguntasTitle_respuesta}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_respuesta}"/>
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_estado}" for="estado" />
+          <h:inputText id="estado" value="#{preguntasController.selected.estado}" title="#{bundle.CreatePreguntasTitle_estado}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_estado}"/>
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_idProveedor}" for="idProveedor" />
+          <h:selectOneMenu id="idProveedor" value="#{preguntasController.selected.idProveedor}" title="#{bundle.CreatePreguntasTitle_idProveedor}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_idProveedor}">
+            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+          <h:outputLabel value="#{bundle.CreatePreguntasLabel_idUsuario}" for="idUsuario" />
+          <h:selectOneMenu id="idUsuario" value="#{preguntasController.selected.idUsuario}" title="#{bundle.CreatePreguntasTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreatePreguntasRequiredMessage_idUsuario}">
+            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{preguntasController.create}" value="#{bundle.CreatePreguntasSaveLink}" />
+        <br />
+        <br />
+        <h:commandLink action="#{preguntasController.prepareList}" value="#{bundle.CreatePreguntasShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreatePreguntasIndexLink}"/>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

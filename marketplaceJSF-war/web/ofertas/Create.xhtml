@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.CreateOfertasTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_id}" for="id" />
+          <h:inputText id="id" value="#{ofertasController.selected.id}" title="#{bundle.CreateOfertasTitle_id}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_descripcion}" for="descripcion" />
+          <h:inputText id="descripcion" value="#{ofertasController.selected.descripcion}" title="#{bundle.CreateOfertasTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_descripcion}"/>
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_fechaInicial}" for="fechaInicial" />
+          <h:inputText id="fechaInicial" value="#{ofertasController.selected.fechaInicial}" title="#{bundle.CreateOfertasTitle_fechaInicial}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_fechaInicial}">
+            <f:convertDateTime pattern="MM/dd/yyyy" />
+          </h:inputText>
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_fechaFinal}" for="fechaFinal" />
+          <h:inputText id="fechaFinal" value="#{ofertasController.selected.fechaFinal}" title="#{bundle.CreateOfertasTitle_fechaFinal}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_fechaFinal}">
+            <f:convertDateTime pattern="MM/dd/yyyy" />
+          </h:inputText>
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_valor}" for="valor" />
+          <h:inputText id="valor" value="#{ofertasController.selected.valor}" title="#{bundle.CreateOfertasTitle_valor}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_valor}"/>
+          <h:outputLabel value="#{bundle.CreateOfertasLabel_idPaquete}" for="idPaquete" />
+          <h:selectOneMenu id="idPaquete" value="#{ofertasController.selected.idPaquete}" title="#{bundle.CreateOfertasTitle_idPaquete}" required="true" requiredMessage="#{bundle.CreateOfertasRequiredMessage_idPaquete}">
+            <f:selectItems value="#{paquetesController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{ofertasController.create}" value="#{bundle.CreateOfertasSaveLink}" />
+        <br />
+        <br />
+        <h:commandLink action="#{ofertasController.prepareList}" value="#{bundle.CreateOfertasShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreateOfertasIndexLink}"/>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

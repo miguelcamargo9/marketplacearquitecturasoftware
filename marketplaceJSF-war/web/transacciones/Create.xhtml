@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.CreateTransaccionesTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_id}" for="id" />
+          <h:inputText id="id" value="#{transaccionesController.selected.id}" title="#{bundle.CreateTransaccionesTitle_id}" required="true" requiredMessage="#{bundle.CreateTransaccionesRequiredMessage_id}"/>
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_fechaTransaccion}" for="fechaTransaccion" />
+          <h:inputText id="fechaTransaccion" value="#{transaccionesController.selected.fechaTransaccion}" title="#{bundle.CreateTransaccionesTitle_fechaTransaccion}" required="true" requiredMessage="#{bundle.CreateTransaccionesRequiredMessage_fechaTransaccion}">
+            <f:convertDateTime pattern="MM/dd/yyyy" />
+          </h:inputText>
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_idUsuario}" for="idUsuario" />
+          <h:selectOneMenu id="idUsuario" value="#{transaccionesController.selected.idUsuario}" title="#{bundle.CreateTransaccionesTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateTransaccionesRequiredMessage_idUsuario}">
+            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_idServicio}" for="idServicio" />
+          <h:selectOneMenu id="idServicio" value="#{transaccionesController.selected.idServicio}" title="#{bundle.CreateTransaccionesTitle_idServicio}" >
+            <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_idPaquete}" for="idPaquete" />
+          <h:selectOneMenu id="idPaquete" value="#{transaccionesController.selected.idPaquete}" title="#{bundle.CreateTransaccionesTitle_idPaquete}" >
+            <f:selectItems value="#{paquetesController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+          <h:outputLabel value="#{bundle.CreateTransaccionesLabel_idOferta}" for="idOferta" />
+          <h:selectOneMenu id="idOferta" value="#{transaccionesController.selected.idOferta}" title="#{bundle.CreateTransaccionesTitle_idOferta}" >
+            <f:selectItems value="#{ofertasController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{transaccionesController.create}" value="#{bundle.CreateTransaccionesSaveLink}" />
+        <br />
+        <br />
+        <h:commandLink action="#{transaccionesController.prepareList}" value="#{bundle.CreateTransaccionesShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreateTransaccionesIndexLink}"/>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

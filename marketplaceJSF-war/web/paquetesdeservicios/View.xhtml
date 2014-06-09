@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.ViewPaquetesdeserviciosTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputText value="#{bundle.ViewPaquetesdeserviciosLabel_id}"/>
+          <h:outputText value="#{paquetesdeserviciosController.selected.id}" title="#{bundle.ViewPaquetesdeserviciosTitle_id}"/>
+          <h:outputText value="#{bundle.ViewPaquetesdeserviciosLabel_estado}"/>
+          <h:outputText value="#{paquetesdeserviciosController.selected.estado}" title="#{bundle.ViewPaquetesdeserviciosTitle_estado}"/>
+          <h:outputText value="#{bundle.ViewPaquetesdeserviciosLabel_idServicio}"/>
+          <h:outputText value="#{paquetesdeserviciosController.selected.idServicio}" title="#{bundle.ViewPaquetesdeserviciosTitle_idServicio}"/>
+          <h:outputText value="#{bundle.ViewPaquetesdeserviciosLabel_idPaquete}"/>
+          <h:outputText value="#{paquetesdeserviciosController.selected.idPaquete}" title="#{bundle.ViewPaquetesdeserviciosTitle_idPaquete}"/>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{paquetesdeserviciosController.destroyAndView}" value="#{bundle.ViewPaquetesdeserviciosDestroyLink}"/>
+        <br />
+        <br />
+        <h:link outcome="Edit" value="#{bundle.ViewPaquetesdeserviciosEditLink}"/>
+        <br />
+        <h:commandLink action="#{paquetesdeserviciosController.prepareCreate}" value="#{bundle.ViewPaquetesdeserviciosCreateLink}" />
+        <br />
+        <h:commandLink action="#{paquetesdeserviciosController.prepareList}" value="#{bundle.ViewPaquetesdeserviciosShowAllLink}"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.ViewPaquetesdeserviciosIndexLink}"/>
+
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>
