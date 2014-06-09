@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -26,15 +27,14 @@
           <h:outputLabel value="#{bundle.EditMenusLabel_estado}" for="estado" />
           <h:inputText id="estado" value="#{menusController.selected.estado}" title="#{bundle.EditMenusTitle_estado}" required="true" requiredMessage="#{bundle.EditMenusRequiredMessage_estado}"/>
         </h:panelGrid>
-        <h:commandLink action="#{menusController.update}" value="#{bundle.EditMenusSaveLink}"/>
+        <h:commandLink class="btn btn-success btn-sm" action="#{menusController.update}" value="#{bundle.EditMenusSaveLink}"/>
         <br />
+        <h:link class="btn btn-default btn-sm" outcome="View" value="#{bundle.EditMenusViewLink}"/>
         <br />
-        <h:link outcome="View" value="#{bundle.EditMenusViewLink}"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{menusController.prepareList}" value="#{bundle.EditMenusShowAllLink}" immediate="true"/>
         <br />
-        <h:commandLink action="#{menusController.prepareList}" value="#{bundle.EditMenusShowAllLink}" immediate="true"/>
-        <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.EditMenusIndexLink}" />
+      <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button> 
       </h:form>
     </ui:define>
   </ui:composition>

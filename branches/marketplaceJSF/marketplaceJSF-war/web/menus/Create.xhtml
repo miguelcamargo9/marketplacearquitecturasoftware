@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -27,13 +28,13 @@
           <h:inputText id="estado" value="#{menusController.selected.estado}" title="#{bundle.CreateMenusTitle_estado}" required="true" requiredMessage="#{bundle.CreateMenusRequiredMessage_estado}"/>
         </h:panelGrid>
         <br />
-        <h:commandLink action="#{menusController.create}" value="#{bundle.CreateMenusSaveLink}" />
+        <h:commandLink class="btn btn-success btn-sm" action="#{menusController.create}" value="#{bundle.CreateMenusSaveLink}" />
         <br />
         <br />
-        <h:commandLink action="#{menusController.prepareList}" value="#{bundle.CreateMenusShowAllLink}" immediate="true"/>
+        <h:commandLink class="btn btn-default btn-sm" action="#{menusController.prepareList}" value="#{bundle.CreateMenusShowAllLink}" immediate="true"/>
         <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.CreateMenusIndexLink}"/>
+       <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button> 
       </h:form>
     </ui:define>
   </ui:composition>

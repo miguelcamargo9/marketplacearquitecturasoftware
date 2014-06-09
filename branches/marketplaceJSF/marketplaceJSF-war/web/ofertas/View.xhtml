@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:b="http://bootsfaces.net/ui">
 
   <ui:composition template="/template.xhtml">
     <ui:define name="title">
@@ -36,15 +37,14 @@
         <h:commandLink action="#{ofertasController.destroyAndView}" value="#{bundle.ViewOfertasDestroyLink}"/>
         <br />
         <br />
-        <h:link outcome="Edit" value="#{bundle.ViewOfertasEditLink}"/>
+        <h:link class="btn btn-success btn-sm" outcome="Edit" value="#{bundle.ViewOfertasEditLink}"/>
         <br />
-        <h:commandLink action="#{ofertasController.prepareCreate}" value="#{bundle.ViewOfertasCreateLink}" />
+        <h:commandLink  class="btn btn-default btn-sm" action="#{ofertasController.prepareCreate}" value="#{bundle.ViewOfertasCreateLink}" />
         <br />
-        <h:commandLink action="#{ofertasController.prepareList}" value="#{bundle.ViewOfertasShowAllLink}"/>
+        <h:commandLink  class="btn btn-default btn-sm" action="#{ofertasController.prepareList}" value="#{bundle.ViewOfertasShowAllLink}"/>
         <br />
-        <br />
-        <h:link outcome="/index" value="#{bundle.ViewOfertasIndexLink}"/>
-
+        <b:button outcome="/index" value="#{bundle.ListAdjuntosIndexLink}" icon="bookmark"> 
+        </b:button>
       </h:form>
     </ui:define>
   </ui:composition>

@@ -16,9 +16,7 @@
       </h:panelGroup>
       <h:form>
         <h:panelGrid columns="2">
-          <h:outputLabel value="#{bundle.EditAdjuntosLabel_id}" for="id" />
-          <h:inputText id="id" value="#{adjuntosController.selected.id}" title="#{bundle.EditAdjuntosTitle_id}" required="true" requiredMessage="#{bundle.EditAdjuntosRequiredMessage_id}"/>
-          <h:outputLabel value="#{bundle.EditAdjuntosLabel_descripcion}" for="descripcion" />
+         <h:outputLabel value="#{bundle.EditAdjuntosLabel_descripcion}" for="descripcion" />
           <h:inputText id="descripcion" value="#{adjuntosController.selected.descripcion}" title="#{bundle.EditAdjuntosTitle_descripcion}" required="true" requiredMessage="#{bundle.EditAdjuntosRequiredMessage_descripcion}"/>
         </h:panelGrid>
         <br />
